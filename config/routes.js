@@ -1,5 +1,6 @@
 //Update the name of the controller below and rename the file.
 const learningVocab = require("../controllers/learningVocab.js")
+
 module.exports = function(app){
   app.get('/login', learningVocab.loginPage)
   app.post('/login', learningVocab.login)

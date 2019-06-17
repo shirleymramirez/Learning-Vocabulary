@@ -12,6 +12,8 @@ module.exports = {
     knex("users").where({email: req.body.email})
     .then((rows)=>{
       var user = rows[0];
+      console.log(user);
+      console.log(req.body.password);
       if(user && user.password === req.body.password){
         req.session.user = user;
       }

@@ -1,10 +1,14 @@
+let connectionString = process.platform === 'win32' ? 'postgres://postgres:root@localhost/learningVocabulary' : 'postgres://localhost/learningVocabulary'
+
+
 module.exports = {
   development: {
     client: 'pg',
-    connection: {
-      database: "learningVocabulary",
-      host: "localhost"
-    },
+    connection: connectionString,
+    // {
+    //   database: "learningVocabulary",
+    //   host: "localhost"
+    // },
     migrations: {
       directory: __dirname + '/db/migrations',
     },

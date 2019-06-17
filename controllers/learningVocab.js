@@ -66,7 +66,7 @@ module.exports = {
 
   },
   train: function(req,res){
-
+    
   },
   logout: function(req,res){
 

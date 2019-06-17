@@ -6,11 +6,9 @@ const port = process.env.PORT || 8000;
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+app.use(express.static(__dirname));
 require('./config/sessions')(app);
-
-app.set('view engine', 'ejs');
-
-app.use(express.static(path.join(__dirname, "public")));
 
 app.set('view engine', 'ejs');
 

@@ -59,6 +59,7 @@ module.exports = {
   newWord: function(req,res){
     //if they just did a post request, we rerender newWord and pass it the result from API
     
+    res.render('newWord', {word: "..."})
   },
   saveWord: function(req, res){
 

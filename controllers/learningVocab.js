@@ -24,6 +24,31 @@ module.exports = {
   register: function(req,res){
     res.render('register');
   },
+  newUser: function(req,res){
+    if(req.body.password!=req.body.confirmpass){
+      res.redirect("/register");
+      return;
+    }
+    knex("users").insert({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+    })
+    .then(()=>{
+      knex("users").where({email: req.body.email})
+      .then((rows)=>{
+        var user = rows[0];
+        req.session.user = user;
+        res.redirect("/");
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  },
   trainingPage: function(req,res){
     res.render('train')
   },

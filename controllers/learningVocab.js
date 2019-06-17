@@ -23,34 +23,6 @@ module.exports = {
     })
   },
   register: function(req,res){
-  /**
-  * TODO(developer): Uncomment these variables before running the sample.
-  */
-  const projectId = 'Learning Vocabulary';
-    // const location = 'global';
-
-    // Imports the Google Cloud Translation library
-    const {TranslationServiceClient} = require('@google-cloud/translate').v3beta1;
-
-    // Instantiates a client
-    const translationClient = new TranslationServiceClient();
-
-    async function listLanguages() {
-      // Construct request
-      const request = {
-        parent: translationClient.locationPath(projectId, location),
-      };
-
-      // Run request
-      const [response] = await translationClient.getSupportedLanguages(request);
-
-      console.log(`Supported languages:`);
-      for (const language of response.languages) {
-        console.log(`Language Code: ${language.languageCode}`);
-      }
-    }
-
-    listLanguages();
     res.render('register');
   },
   newUser: function(req,res){

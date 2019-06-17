@@ -1,9 +1,12 @@
+
 module.exports = {
   development: {
     client: 'pg',
     connection: {
-      database: "learningVocabulary",
-      host: "localhost"
+      host : '127.0.0.1',
+      user : 'postgres',
+      password : 'postgrespassword',
+      database : 'learningVocabulary'
     },
     migrations: {
       directory: __dirname + '/db/migrations',

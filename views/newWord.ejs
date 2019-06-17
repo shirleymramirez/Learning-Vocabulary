@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../public/css/styles.css">
+</head>
+
+<body>
+    <h1>Add a New Word</h1>
+    <br>
+    <form action="/spanish/newWord" method="post">
+        <input type="text" name="inputWord" placeholder="type your word here"><br>
+        <button type="submit">Translate</button>
+    </form>
+
+    <form action="/spanish/newWord/:<%='translatedWord'%>">
+        <input type="text" name="outputWord" value="<%='translatedWord here'%>">
+        <br>
+        <button type="submit" class="register">Add to Dictionary</button>
+    </form>
+</body>
+
+</html>

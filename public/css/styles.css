@@ -23,9 +23,10 @@ button {
     width: 100px;
     margin-top: 5px;
     background-color: #00B938;
+    color: white;
 }
 
-button .register {
+button.register {
     border: 1px solid #007E26;
     border-radius: 3px;
     padding: 5px;

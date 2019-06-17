@@ -1,7 +1,6 @@
 const knex = require("../db/knex.js");
 
 module.exports = {
-  // CHANGE ME TO AN ACTUAL FUNCTION
   index: function(req, res) {
     res.render('index', {user: req.session.user});
   },
@@ -24,6 +23,34 @@ module.exports = {
     })
   },
   register: function(req,res){
+  /**
+  * TODO(developer): Uncomment these variables before running the sample.
+  */
+  const projectId = 'Learning Vocabulary';
+    // const location = 'global';
+
+    // Imports the Google Cloud Translation library
+    const {TranslationServiceClient} = require('@google-cloud/translate').v3beta1;
+
+    // Instantiates a client
+    const translationClient = new TranslationServiceClient();
+
+    async function listLanguages() {
+      // Construct request
+      const request = {
+        parent: translationClient.locationPath(projectId, location),
+      };
+
+      // Run request
+      const [response] = await translationClient.getSupportedLanguages(request);
+
+      console.log(`Supported languages:`);
+      for (const language of response.languages) {
+        console.log(`Language Code: ${language.languageCode}`);
+      }
+    }
+
+    listLanguages();
     res.render('register');
   },
   newUser: function(req,res){
@@ -56,11 +83,13 @@ module.exports = {
   },
   wordForm: function(req,res){
     //if they haven't done the post request, we'll pass an empty string
+    let word = "..."
     res.render('newWord')
   },
   newWord: function(req,res){
     //if they just did a post request, we rerender newWord and pass it the result from API
-    
+    let newWord="google API result";
+    res.render('newWord', word=newWord)
   },
   saveWord: function(req, res){
 

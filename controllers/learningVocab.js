@@ -68,7 +68,7 @@ module.exports = {
 
   },
   saveWord: function(req, res){
-
+    
   },
   train: function(req,res){
     res.redirect("train");

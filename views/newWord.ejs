@@ -15,7 +15,7 @@
         <button type="submit">Translate</button>
     </form>
 
-    <form action="/spanish/newWord/<%=word%>">
+    <form action="/spanish/saveWord/<%=word%>" method="post">
         <input type="text" name="outputWord" value="<%=word%>">
         <br>
         <button type="submit" class="register">Add to Dictionary</button>

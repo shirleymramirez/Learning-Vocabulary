@@ -12,7 +12,7 @@ module.exports = function(app){
   app.get('/:language/train', learningVocab.trainingPage)
   app.get('/:language/newWord', learningVocab.wordForm)
   app.post('/:language/newWord', learningVocab.newWord)
-  app.post('/:language/newWord/:translatedWord', learningVocab.saveWord)
+  app.post('/:language/saveWord', learningVocab.saveWord)
   app.post('/:language/train', learningVocab.train)
   app.post('/logout', learningVocab.logout)
 

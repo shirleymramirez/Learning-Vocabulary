@@ -89,3 +89,15 @@ textarea {
 .backLink {
     justify-content: flex-start; 
 }
+table{
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+}
+
+.table-container{
+    justify-content: center;
+    text-align: center;
+    
+    align-content: center;
+}

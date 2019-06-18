@@ -10,10 +10,10 @@
     <h1>Ready to Train?</h1>
     <br>
     <!-- flashcard for the translated word -->
-    <form>
-        <textarea rows="4" cols="50"><%= translated.word%></textarea>
+    <form action="/spanish/train/<%=word%>">
+        <textarea rows="4" cols="50"><%=word%></textarea>
         <br>
-        <input type="text" name="inputWord" value="inputWord" placeholder="Word to Be tranlated">
+        <input type="text" name="inputWord" value="inputWord" placeholder="Word to Be translated">
         <br>
         <button type="submit">Submit</button>
     </form>

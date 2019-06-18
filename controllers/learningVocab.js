@@ -52,7 +52,7 @@ module.exports = {
     })
   },
   trainingPage: function(req,res){
-    res.render('train', { user: req.session.user });
+    res.render('train', { word: req.body.inputWord });
   },
   wordForm: function(req,res){
     //if they haven't done the post request, we'll pass an empty string

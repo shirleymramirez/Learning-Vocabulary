@@ -54,7 +54,7 @@ module.exports = {
 
   trainingPage: function(req,res){
     // get words from the database based on user's input word
-    knex('words').where({ user_id: req.session.user.id })
+    knex('words').orderBy('updated_at', 'asc').where({ user_id: req.session.user.id })
     .then((results)=> {
       // console.log(results);
       res.render('train', { translatedWord: results[0] });
@@ -107,12 +107,11 @@ module.exports = {
   },
 
   train: function(req,res){
-    knex('words').orderBy('updated_at').where({ user_id: req.session.user.id })
-      .then((results) => {
-        if (req.body.inputWord === req.body.answer ) {
+      if (req.body.inputWord === req.body.answer ) {
+        //rerender the page access database again 
+        //knex()
           res.redirect("train");
-        }
-      })
+      }
   },
 
   logout: function(req,res){

@@ -1,9 +1,14 @@
+/**
+  * TODO(developer): Uncomment these variables before running the sample.
+  */
+
  const location = 'global';
+
 
 'use strict';
 
 async function main(
-    projectId = 'GOOGLE_PROJECT_ID' // Your GCP Project Id
+  projectId = process.env['GOOGLE_PROJECT_ID'] // Your GCP Project Id
 ) {
   // [START translate_quickstart]
   // Imports the Google Cloud client library
@@ -26,10 +31,19 @@ async function main(
 
   // Translates some text into Russian
   const [translation] = await translate.translate(text, target);
+<<<<<<< HEAD
   console.log(`Text: ${ text } `);
   console.log(`Translation: ${ translation } `);
+=======
+  console.log(`Text: ${text}`);
+  console.log(`Translation: ${translation}`);
+>>>>>>> b6b4e22a992eec68b575abb8cbd1096a848f4914
 }
 // [END translate_quickstart]
 
 const args = process.argv.slice(2);
+<<<<<<< HEAD
 main(...args).catch(console.error);
+=======
+main(...args).catch(console.error);
+>>>>>>> b6b4e22a992eec68b575abb8cbd1096a848f4914

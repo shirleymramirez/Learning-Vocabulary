@@ -1,4 +1,5 @@
 const knex = require("../db/knex.js");
+const translator = require('../config/GoogleAPI.js');
 
 module.exports = {
   index: function(req, res) {
@@ -55,13 +56,14 @@ module.exports = {
   },
   wordForm: function(req,res){
     //if they haven't done the post request, we'll pass an empty string
-    let word = "..."
-    res.render('newWord')
+    res.render('newWord',{word: "..."})
   },
   newWord: function(req,res){
     //if they just did a post request, we rerender newWord and pass it the result from API
-    let newWord="google API result";
-    res.render('newWord', word=newWord)
+    let newWord= translator(req.body.inputWord, "es") ;
+    console.log(translator(req.body.inputWord, "es"));
+
+    res.render('newWord', {word:newWord})
   },
   saveWord: function(req, res){
 

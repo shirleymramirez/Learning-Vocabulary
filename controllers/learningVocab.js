@@ -1,7 +1,6 @@
 const knex = require("../db/knex.js");
 
 module.exports = {
-  // CHANGE ME TO AN ACTUAL FUNCTION
   index: function(req, res) {
     res.render('index', {user: req.session.user});
   },
@@ -52,22 +51,25 @@ module.exports = {
     })
   },
   trainingPage: function(req,res){
-    res.render('train')
+    res.render('train', { user: req.session.user });
   },
   wordForm: function(req,res){
     //if they haven't done the post request, we'll pass an empty string
+    let word = "..."
     res.render('newWord')
   },
   newWord: function(req,res){
     //if they just did a post request, we rerender newWord and pass it the result from API
-    
+    let newWord="google API result";
+    res.render('newWord', word=newWord)
   },
   saveWord: function(req, res){
 
   },
   train: function(req,res){
-    
+    res.redirect("train");
   },
+
   logout: function(req,res){
 
   }

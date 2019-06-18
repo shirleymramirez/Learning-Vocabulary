@@ -1,5 +1,9 @@
 node_modules/
 .env
 knexfile.js
+
 learningvocabularytranslator-830d0364d058.json
+
+Learning-Vocabulary-21650689f518.json
+
 config/GoogleAPI.js

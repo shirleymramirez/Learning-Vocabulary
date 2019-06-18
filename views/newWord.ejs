@@ -22,6 +22,21 @@
         <br>
         <button type="submit" class="register">Add to Dictionary</button>
     </form>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>English</th>
+                <th>Spanish</th>
+            </tr>
+            <%for(let i=0;i<dictionary.length;i++){%>
+                <tr>
+                    <td><%=dictionary[i].word%></td>
+                    <td> <%=dictionary[i].translation%></td>
+                </tr>
+            <%}%>
+        </table>
+    </div>
 </body>
 
 </html>

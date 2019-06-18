@@ -72,3 +72,16 @@ button {
 .newWordButton {
     margin-left: 30px;
 }
+
+table{
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+}
+
+.table-container{
+    justify-content: center;
+    text-align: center;
+    
+    align-content: center;
+}

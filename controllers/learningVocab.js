@@ -60,10 +60,12 @@ module.exports = {
   },
   newWord: function(req,res){
     //if they just did a post request, we rerender newWord and pass it the result from API
-    let newWord= translator(req.body.inputWord, "es") ;
-    console.log(translator(req.body.inputWord, "es"));
+    async function getWord(word =req.body.inputWord,language= "es"){
+      let newWord = await translator(word,language)
+      res.render('newWord', {word:newWord})
+    }
+    getWord();
 
-    res.render('newWord', {word:newWord})
   },
   saveWord: function(req, res){
 

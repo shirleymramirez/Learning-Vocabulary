@@ -74,5 +74,24 @@ button {
 }
 
 table{
-    margin: 0 auto;
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 300px;
+    border: 1px solid black;
 }
+
+tr:nth-child(even){
+    background-color: rgba(0, 126, 38, 0.274);
+}
+th{
+    background-color: #007E26;
+    color: white;
+    border: 1px solid #007E26;
+    padding: 8px;
+}
+td{
+    padding: 8px;
+    border: 1px solid #007E26;
+    padding: 8px;
+}
+

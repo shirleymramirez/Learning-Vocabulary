@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/translate": "^4.1.0",
     "connect-session-knex": "^1.4.0",
     "ejs": "^2.5.7",
     "ejs-lint": "^0.3.0",

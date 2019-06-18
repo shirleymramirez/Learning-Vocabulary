@@ -35,3 +35,40 @@ button {
     margin-top: 5px;
     background-color: #007E26;
 }
+
+.logoutDiv {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 50px;
+}
+
+.logoutButton {
+    justify-content: flex-end; 
+}
+
+.indexContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.trainButton, .newWordButton {
+    padding: 5px;
+    text-decoration: none;
+    background-color: rgb(53, 163, 86);
+    color: white;
+    border: 1px solid #007E26;
+    border-radius: 2px;
+    font-size: 10px;
+    padding: 10px;
+    width: 100px;
+}
+
+.trainButton {
+    margin-right: 30px;
+}
+
+.newWordButton {
+    margin-left: 30px;
+}

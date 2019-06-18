@@ -1,7 +1,6 @@
 const knex = require("../db/knex.js");
 
 module.exports = {
-  // CHANGE ME TO AN ACTUAL FUNCTION
   index: function(req, res) {
     res.render('index', {user: req.session.user});
   },
@@ -12,6 +11,8 @@ module.exports = {
     knex("users").where({email: req.body.email})
     .then((rows)=>{
       var user = rows[0];
+      console.log(user);
+      console.log(req.body.password);
       if(user && user.password === req.body.password){
         req.session.user = user;
       }
@@ -54,6 +55,7 @@ module.exports = {
   },
   wordForm: function(req,res){
     //if they haven't done the post request, we'll pass an empty string
+    let word = "..."
     res.render('newWord')
   },
   newWord: function(req,res){
@@ -65,7 +67,7 @@ module.exports = {
 
   },
   train: function(req,res){
-
+    
   },
   logout: function(req,res){
 

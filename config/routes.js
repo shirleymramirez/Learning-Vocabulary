@@ -19,7 +19,7 @@ module.exports = function(app){
 }
 
 function authenticateUser(req,res,next){
-  if(!req.session.user){
+  if (!req.session.user){
     res.redirect("/login")
   }
   else{

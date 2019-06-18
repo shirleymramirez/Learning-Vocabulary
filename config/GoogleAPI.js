@@ -1,31 +1,35 @@
-/**
- * TODO(developer): Uncomment these variables before running the sample.
- */
-const projectId = 'learning-vocabulary-translator';
-const location = 'global';
-const text = 'hello world';
+ const location = 'global';
 
-// Imports the Google Cloud Translation library
-const { TranslationServiceClient } = require('@google-cloud/translate').v3beta1;
+'use strict';
 
-// Instantiates a client
-const translationClient = new TranslationServiceClient();
-async function translateText() {
-    // Construct request
-    const request = {
-        parent: translationClient.locationPath(projectId, location),
-        contents: [text],
-        mimeType: 'text/plain', // mime types: text/plain, text/html
-        sourceLanguageCode: 'en-US',
-        targetLanguageCode: 'fil',
-    };
+async function main(
+    projectId = 'GOOGLE_PROJECT_ID' // Your GCP Project Id
+) {
+  // [START translate_quickstart]
+  // Imports the Google Cloud client library
+  const {Translate} = require('@google-cloud/translate');
 
-    // Run request
-    const [response] = await translationClient.translateText(request);
-
-    for (const translation of response.translations) {
-        console.log(`Translation: ${translation.translatedText}`);
+  // Instantiates a client
+  const translate = new Translate({
+    projectId: projectId,
+    credentials: {
+      private_key: process.env['GOOGLE_PRIVATE_KEY'].replace(/\\n/g, '\n'),
+      client_email: process.env['GOOGLE_CLIENT_EMAIL']
     }
-}
+  });
 
-translateText();
+  // The text to translate
+  const text = 'Hello, world!';
+
+  // The target language
+  const target = 'ru';
+
+  // Translates some text into Russian
+  const [translation] = await translate.translate(text, target);
+  console.log(`Text: ${ text } `);
+  console.log(`Translation: ${ translation } `);
+}
+// [END translate_quickstart]
+
+const args = process.argv.slice(2);
+main(...args).catch(console.error);

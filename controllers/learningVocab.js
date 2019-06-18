@@ -12,12 +12,17 @@ module.exports = {
     knex("users").where({email: req.body.email})
     .then((rows)=>{
       var user = rows[0];
-      console.log(user);
-      console.log(req.body.password);
       if(user && user.password === req.body.password){
         req.session.user = user;
       }
-      res.redirect("/");
+      knex("words").where({user_id:req.session.user.id}).update({
+        status:"blue",
+        count:0
+      })
+      .then(rows=>{
+        res.redirect("/");
+      })
+      .catch(error=>console.log(error))
     })
     .catch(err=>{
       console.log(err);

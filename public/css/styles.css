@@ -101,3 +101,30 @@ button {
     height: 200px;
     text-align: center;
 }
+table{
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 300px;
+}
+
+tr:nth-child(even){
+    background-color: rgba(0, 126, 38, 0.274);
+}
+th{
+    background-color: #007E26;
+    color: white;
+    border: 1px solid #007E26;
+    padding: 8px;
+}
+td{
+    padding: 8px;
+    border: 1px solid #007E26;
+    padding: 8px;
+}
+
+.table-container{
+    justify-content: center;
+    text-align: center;
+    
+    align-content: center;
+}

@@ -2,20 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../public/css/styles.css">
     <title>Training Page</title>
 </head>
 <body>
-    <h1>Ready to Train?</h1>
+    <div class="back">
+        <a href="/" class="backLink">Back</a>
+    </div>
     <br>
-    <!-- flashcard for the translated word -->
-    <form action="/spanish/train/<%=word%>">
-        <textarea rows="4" cols="50"><%=word%></textarea>
+    <h1 class="h1Train">Ready to Train?</h1>
+    <br>
+    <form>
+        <textarea rows="10" cols="50"></textarea>
         <br>
-        <input type="text" name="inputWord" value="inputWord" placeholder="Word to Be translated">
+        <input type="text" name="inputWord" value="" placeholder="Word to Be translated">
         <br>
-        <button type="submit">Submit</button>
+        <button type="submit">Enter</button>
     </form>
 </body>
 </html>

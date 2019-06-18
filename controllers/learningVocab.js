@@ -52,6 +52,10 @@ module.exports = {
     })
   },
   trainingPage: function(req,res){
+    // get words from the database based on user's input word
+    knex('users').from('words'). where({
+      
+    })
     res.render('train', { word: req.body.inputWord });
   },
   wordForm: function(req,res){

@@ -70,11 +70,6 @@ button {
     margin-right: 30px;
 }
 
-textarea {
-    border: 1px solid #007E26;
-    border-radius: 2px;
-}
-
 .newWordButton {
     margin-left: 30px;
 }
@@ -88,4 +83,21 @@ textarea {
 
 .backLink {
     justify-content: flex-start; 
+}
+
+.h1Train {
+    flex-wrap: nowrap;
+    justify-content: center;
+    height: 0;
+}
+
+.flashWord {
+    margin-top: 40px;
+    border: 1px solid #007E26;
+    border-radius: 2px;
+    padding-top: 20px;
+    font-size: 20px;
+    width: 500px;
+    height: 200px;
+    text-align: center;
 }

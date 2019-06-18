@@ -12,12 +12,22 @@
     <br>
     <h1 class="h1Train">Ready to Train?</h1>
     <br>
-    <form>
-        <textarea rows="4" cols="50">WORD</textarea>
+    <form action="/spanish/train" method="POST">
+        <textarea class="flashWord" rows="10" cols="50"><%= translatedWord.translation %></textarea>
         <br>
-        <input type="text" name="inputWord" value="inputWord" placeholder="Word to Be translated">
+        <input type="hidden" name="answer" value="<%=translatedWord.word%>">
+        <input type="hidden" name="hiddenWord" value="<%=translatedWord.id%>">
+        <input type="text" name="inputWord" placeholder="Answer">
         <br>
         <button type="submit">Enter</button>
     </form>
+
+
+    <progress class="" value="22" max="100"></progress>
+    <br>
+    <progress value="22" max="100"></progress>
+    <br>
+    <progress value="22" max="100"></progress>
+
 </body>
 </html>

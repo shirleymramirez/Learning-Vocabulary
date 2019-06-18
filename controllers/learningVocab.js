@@ -51,13 +51,19 @@ module.exports = {
       console.log(err);
     })
   },
+
   trainingPage: function(req,res){
     // get words from the database based on user's input word
-    knex('users').from('words'). where({
-      
+    knex('words').where({ user_id: req.session.user.id })
+    .then((results)=> {
+      // console.log(results);
+      res.render('train', { translatedWord: results[0] });
     })
-    res.render('train', { word: req.body.inputWord });
+    .catch(err => {
+      console.log(err);
+    })
   },
+
   wordForm: function(req,res){
     //if they haven't done the post request, we'll pass an empty string
     res.render('newWord',{translatedWord: "...", engWord: "type your word here"})
@@ -89,8 +95,14 @@ module.exports = {
     })
     .catch(err=>console.log(err));
   },
+
   train: function(req,res){
-    res.redirect("train");
+    knex('words').orderBy('updated_at').where({ user_id: req.session.user.id })
+      .then((results) => {
+        if (req.body.inputWord === req.body.answer ) {
+          res.redirect("train");
+        }
+      })
   },
 
   logout: function(req,res){

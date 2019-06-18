@@ -24,6 +24,7 @@ button {
     margin-top: 5px;
     background-color: #00B938;
     color: white;
+    cursor: pointer;
 }
 
 .register {

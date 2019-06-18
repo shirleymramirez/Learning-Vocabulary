@@ -74,21 +74,26 @@ module.exports = {
   },
   saveWord: function(req, res){
     let translatedWord = req.body.outputWord;
-    let englishWord = req.body.inputWord;
-    knex("users").where({email: req.session.user.email}).then(rows=>{
-      let userID = rows[0].id;
-      knex("words").insert({//should check if we already have the word & same translation in db
-        word: englishWord,
-        translation: translatedWord,
-        user_id: userID,
-        language: 'Spanish',
-        status: 'yellow'
-      }).then(result=>{
-        res.redirect('/spanish/newWord');
+    if(translatedWord=="..."){
+      res.redirect('/spanish/newWord')
+    }
+    else{
+      let englishWord = req.body.inputWord;
+      knex("users").where({email: req.session.user.email}).then(rows=>{
+        let userID = rows[0].id;
+        knex("words").insert({//should check if we already have the word & same translation in db
+          word: englishWord,
+          translation: translatedWord,
+          user_id: userID,
+          language: 'Spanish',
+          status: 'yellow'
+        }).then(result=>{
+          res.redirect('/spanish/newWord');
+        })
+        .catch(err=>console.log(err));
       })
       .catch(err=>console.log(err));
-    })
-    .catch(err=>console.log(err));
+    }
   },
   train: function(req,res){
     res.redirect("train");

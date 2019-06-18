@@ -77,7 +77,6 @@ table{
     margin: 20px auto;
     border-collapse: collapse;
     width: 300px;
-    border: 1px solid black;
 }
 
 tr:nth-child(even){

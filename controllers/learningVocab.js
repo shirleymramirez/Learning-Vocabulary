@@ -51,7 +51,7 @@ module.exports = {
     })
   },
   trainingPage: function(req,res){
-    res.render('train')
+    res.render('train', { user: req.session.user });
   },
   wordForm: function(req,res){
     //if they haven't done the post request, we'll pass an empty string
@@ -67,8 +67,9 @@ module.exports = {
 
   },
   train: function(req,res){
-    
+    res.redirect("train");
   },
+
   logout: function(req,res){
 
   }

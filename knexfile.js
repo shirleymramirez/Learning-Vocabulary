@@ -2,8 +2,8 @@ module.exports = {
     development: {
       client: 'pg',
       connection: {
-        host : '127.0.0.1',
-        user : process.env['POSTGRES_USER']|| "root",
+        host: '127.0.0.1' || localhost,
+        user : process.env['POSTGRES_USER'],
         password : process.env['POSTGRES_PASS']|| "",
         database : 'learningVocabulary'
       },

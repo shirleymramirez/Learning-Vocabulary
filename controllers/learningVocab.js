@@ -70,7 +70,20 @@ module.exports = {
   saveWord: function(req, res){
     let translatedWord = req.body.outputWord;
     let englishWord = req.body.inputWord;
-    console.log(translatedWord + englishWord);
+    knex("users").where({email: req.session.user.email}).then(rows=>{
+      let userID = rows[0].id;
+      knex("words").insert({
+        word: englishWord,
+        translation: translatedWord,
+        user_id: userID,
+        language: 'Spanish',
+        status: 'yellow'
+      }).then(result=>{
+        res.redirect('/');
+      })
+      .catch(err=>console.log(err));
+    })
+    .catch(err=>console.log(err));
   },
   train: function(req,res){
     res.redirect("train");

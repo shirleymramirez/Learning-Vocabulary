@@ -8,7 +8,7 @@
 'use strict';
 
 async function main(
-  projectId = 'learning-vocabulary-244016' // Your GCP Project Id
+  projectId = process.env['GOOGLE_PROJECT_ID'] // Your GCP Project Id
 ) {
   // [START translate_quickstart]
   // Imports the Google Cloud client library

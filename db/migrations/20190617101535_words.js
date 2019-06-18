@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
         table.string("language");
         table.string("translation");
         table.string("status");
+        table.integer("count");
         table.integer("user_id")
             .notNullable()
             .references('id')

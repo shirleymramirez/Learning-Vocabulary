@@ -65,7 +65,6 @@ button {
     background-color: var(--darkgreen);
     color: white;
     border-radius: 2px;
-    font-size: 10px;
     padding: 10px;
     width: 100px;
 }

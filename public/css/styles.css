@@ -132,7 +132,7 @@ form {
 }
 
 .front, .back {
-    margin-left: 310px;
+    /* margin-left: 310px; */
 }
 
 .card .flipCardFront {

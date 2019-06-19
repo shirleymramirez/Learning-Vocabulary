@@ -172,7 +172,13 @@ module.exports = {
           }
         })
         .then(result=>{
-          res.redirect("/spanish/train");
+          req.session.save(function(err){
+            if(err){
+              console.error(err);
+            }
+            res.redirect("/spanish/train");
+  
+          })
         })
         
       }
@@ -186,8 +192,12 @@ module.exports = {
           .catch(err=>console.log(err));
         })
         .catch(err=>console.log(err));
-        
-        res.redirect("/spanish/train");
+        req.session.save(function(err){
+          if(err){
+            console.error(err);
+          }
+          res.redirect("/spanish/train");
+        })
       }
   },
 

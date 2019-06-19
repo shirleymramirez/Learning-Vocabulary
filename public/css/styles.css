@@ -104,31 +104,18 @@ form {
     background-color: transparent;
     height: 300px;
     perspective: 1000px;
-
-    /* border-radius: 2px; */
-
-    /* -webkit-perspective: 800px; */
-    /* -moz-perspective: 800px; */
-    /* -o-perspective: 800px; */
-    /* perspective: 800px; */
+    border-radius: 2px;
 }
 
 .card {
     margin-left: auto;
-    width: 100%;
+    width: 50%;
     height: 100%;
     text-align: center;
 
     position: absolute;
-    -webkit-transition: -webkit-transform 2s;
-    -moz-transition: -moz-transform 2s;
-    -o-transition: -o-transform 2s;
     transition: transform 2s;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    -o-transform-style: preserve-3d;
     transform-style: preserve-3d; 
-    -webkit-transform-origin: 50% 50%; 
 }
 
 .card div {
@@ -141,34 +128,31 @@ form {
     font-weight: bold;
     font-size: 140px;
     position: absolute;
-    /* -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden; */
+    backface-visibility: hidden;
+}
+
+.front, .back {
+    margin-left: 310px;
 }
 
 .card .flipCardFront {
-  position: absolute;
-  font-size: 1em;
+    position: absolute;
+    font-size: 1em;
 }
 
 .card .flipCardBack {
     position: relative;
-    /* -moz-transform: rotateY( 180deg ); */
-    -o-transform: rotateY( 180deg );
     transform: rotateY( 180deg );
     font-size: 1em;
 }
 
 .card.flipped {
-    -webkit-transform: rotateY( 180deg );
-    -moz-transform: rotateY( 180deg );
-    -o-transform: rotateY( 180deg );
     transform: rotateY( 180deg );
 }
 
 .correctAnswer {
     background-color: yellow;
+    visibility: visible;
 }
 
 .wrongAnswer {

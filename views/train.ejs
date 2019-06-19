@@ -14,22 +14,24 @@
     <br>
     <form action="/train" method="POST">
         <div class="flipCard">
-            <div class="card" onclick="flip()">
-                <textarea class="flipCardFront" rows="10" cols="50" readonly><%= translatedWord.translation %></textarea>
-                <!-- <%if(translatedWord.word === translatedWord.answer) {%> -->
-                    <textarea class="flipCardBack correctAnswer" rows="10" cols="50" readonly><%= translatedWord.word %></textarea>
-                <!-- <%} else {%>
-                    <textarea class="flipCardBack wrongAnswer" rows="10" cols="50" readonly><%= translatedWord.word %></textarea>
-                <%}%> -->
+            <div class="card" onclick="flip()">         
+                <div style="color:black; border: 1px solid black" class="flipCardFront front" rows="10" cols="50" readonly><%= translatedWord.translation %></div>
+                <div style="color:black; border: 1px solid black" class="flipCardBack back" rows="10" cols="50" readonly>
+                    <%= translatedWord.word %>
+                    <input type="hidden" name="answer" value="<%=translatedWord.word%>">
+                    <input type="hidden" name="hiddenWord" value="<%=translatedWord.id%>">
+                    <input type="hidden" id="hiddenAnswer" name="inputWord">
+                    <br>
+                    <button type="submit">Next Word</button>
+                </div>
             </div>
         </div>
+    </form>
         <br>
-        <input type="hidden" name="answer" value="<%=translatedWord.word%>">
-        <input type="hidden" name="hiddenWord" value="<%=translatedWord.id%>">
-        <input type="text" name="inputWord" placeholder="Answer" required>
+        <input type="text" name="inputWord" id="answerBox" placeholder="Answer" required>
         <br>
         <button type="submit" onclick="flip()">Enter</button>
-    </form>
+    
 
     <span class="label">You have mastered <%=greenWords%> out of <%=totalWords%> words.</span> 
     <progress class="greenProgressBar" value="<%=greenWords%>" max="<%=totalWords%>"></progress>
@@ -44,8 +46,11 @@
 
     <script>
         function flip() {
-            var element = document.querySelector(".card");
-            element.classList.toggle("flipped");
+            var card = document.querySelector(".card");
+            card.classList.toggle("flipped");
+
+            var answer = document.querySelector("#hiddenAnswer");
+            answer.value=document.querySelector("#answerBox").value
         }
     </script>
 

@@ -14,13 +14,13 @@
     <br>
     <h1>Add a New Word</h1>
     <br>
-    <form action="/spanish/newWord" method="post">
+    <form action="/newWord" method="post">
         <input type="text" name="inputWord" placeholder="<%=engWord%>">
         <br>
         <button type="submit">Translate</button>
     </form>
 
-    <form action="/spanish/saveWord" method="post">
+    <form action="/saveWord" method="post">
         <input type="hidden" name="inputWord" value="<%=engWord%>">
         <input type="text" name="outputWord" value="<%=translatedWord%>">
         <br>

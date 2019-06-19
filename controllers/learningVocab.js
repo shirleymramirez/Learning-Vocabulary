@@ -152,7 +152,7 @@ module.exports = {
   saveWord: function(req, res){
     let translatedWord = req.body.outputWord;
     if(translatedWord=="..."){
-      res.redirect('/spanish/newWord')
+      res.redirect('/newWord')
     }
     else{
       let englishWord = req.body.inputWord;
@@ -166,7 +166,7 @@ module.exports = {
           count: 0,
           status: 'blue'
         }).then(result=>{
-          res.redirect('/spanish/newWord');
+          res.redirect('/newWord');
         })
         .catch(err=>console.log(err));
       })
@@ -216,7 +216,7 @@ module.exports = {
             if(err){
               console.error(err);
             }
-            res.redirect("/spanish/train");
+            res.redirect("/train");
   
           })
         })
@@ -236,7 +236,7 @@ module.exports = {
           if(err){
             console.error(err);
           }
-          res.redirect("/spanish/train");
+          res.redirect("/train");
         })
       }
   },

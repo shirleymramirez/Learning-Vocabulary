@@ -115,6 +115,7 @@ module.exports = {
     knex('words').orderBy('updated_at', ).where({ user_id: req.session.user.id })
       .then((results) => {
         if (req.body.inputWord === req.body.answer ) {
+
           knex('words').where({id: req.body.hiddenWord}).then(rows=>{
             if(rows[0].count==2){
               knex('words').where({id: req.body.hiddenWord}).update({

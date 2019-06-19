@@ -141,7 +141,7 @@ module.exports = {
     .then(result=>{//result is an array of objects\
       async function getWord(word =req.body.inputWord,language= req.session.user.language){
         let newWord = await translator(word,language)
-        res.render('newWord', {translatedWord:newWord, engWord:word, dictionary:result})
+        res.render('newWord', {translatedWord:newWord, engWord:word, dictionary:result, language: req.session.user.language})
       }
       getWord();
     })

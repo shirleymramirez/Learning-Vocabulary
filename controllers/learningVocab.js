@@ -3,7 +3,6 @@ const translator = require('../config/GoogleAPI.js');
 
 module.exports = {
   index: function(req, res) {
-    console.log(req.session.user)
     res.render('index', {user: req.session.user});
   },
   loginPage: function(req, res) {
@@ -18,18 +17,20 @@ module.exports = {
           language: req.body.language.substr(0,2)
         })
         .then(()=>{
-          req.session.user = user;
-          knex("words").where({user_id:req.session.user.id}).update({
-            status:"blue",
-            count:0
-          })
-          .then(rows=>{
+          knex("users").where({email: req.body.email}).then(rows=>{
+            let currUser=rows[0];
+            req.session.user = currUser;
             req.session.save(err=>{
               if(err){
                 console.error(err);
               }
-              res.redirect("/");
             })
+          });
+          knex("words").where({user_id:req.session.user.id}).update({//maybe this could cause an issue if they lgin when the past user didn't log out
+            status:"blue",
+            count:0
+          }).then(result=>{
+            res.redirect("/");
           })
           .catch(error=>console.log(error))
         })

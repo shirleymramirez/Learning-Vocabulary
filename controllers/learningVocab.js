@@ -59,7 +59,7 @@ module.exports = {
 
   trainingPage: function(req,res){
     // get words from the database based on user's input word
-    knex('words').where({ user_id: req.session.user.id })
+    knex('words').where({ user_id: req.session.user.id }).whereNot({status: 'green'})
     .then((results)=> {
       // console.log(results);
       res.render('train', { translatedWord: results[0] });
@@ -101,7 +101,8 @@ module.exports = {
           translation: translatedWord,
           user_id: userID,
           language: 'Spanish',
-          status: 'yellow'
+          count: 0,
+          status: 'blue'
         }).then(result=>{
           res.redirect('/spanish/newWord');
         })
@@ -112,11 +113,47 @@ module.exports = {
   },
 
   train: function(req,res){
-    knex('words').orderBy('updated_at').where({ user_id: req.session.user.id })
+    knex('words').orderBy('updated_at', ).where({ user_id: req.session.user.id })
       .then((results) => {
         if (req.body.inputWord === req.body.answer ) {
-          res.redirect("train");
+          knex('words').where({id: req.body.hiddenWord}).then(rows=>{
+            if(rows[0].count==2){
+              knex('words').where({id: req.body.hiddenWord}).update({
+                count: rows[0].count+1,
+                status: 'green'
+              })
+              .catch(err=>console.log(err));
+            }
+            else if(rows[0].count==0){
+              knex('words').where({id: req.body.hiddenWord}).update({
+                count: rows[0].count+1,
+                status: 'yellow'
+              })
+              .catch(err=>console.log(err));
+            }
+            else {
+              knex('words').where({id: req.body.hiddenWord}).update({
+                count: rows[0].count+1
+              })
+              .catch(err=>console.log(err));
+            }
+          })
+          .then(result=>{
+            res.redirect("train");
+          })
+          
         }
+        else{
+          knex('words').where({id: req.body.hiddenWord}).then(rows=>{
+            knex('words').where({id: req.body.hiddenWord}).update({
+              count: 0,
+              status: 'red'
+            })
+            .catch(err=>console.log(err));
+          })
+          .catch(err=>console.log(err));
+        }
+        
       })
   },
 

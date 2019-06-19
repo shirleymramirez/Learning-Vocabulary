@@ -219,6 +219,18 @@ progress::-webkit-progress-bar {
     background: rgb(230, 230, 230);
 }
 
+.redProgressBar {
+    background: var(--red);
+}
+
+.yellowProgressBar {
+    background: var(--yellow);
+}
+
+.greenProgressBar {
+    background: var(--lightgreen);
+}
+
 .redProgressBar::-webkit-progress-value{
     background: var(--red);
 }

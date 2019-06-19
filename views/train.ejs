@@ -27,5 +27,17 @@
         <button type="submit">Enter</button>
     </form>
 
+    <!-- value = number of correct/total numbers of words * 100% -->
+    <!-- max = total number of words -->
+    <span class="label">You have mastered <%=greenWords%> out of <%=totalWords%> words.</span> 
+    <progress class="greenProgressBar" value="<%=greenWords%>" max="<%=totalWords%>"></progress>
+    <br>
+    <span class="label">You are reviewing <%=yellowWords%> out of <%=totalWords%> words.</span> 
+    <progress class="yellowProgressBar" value="<%=yellowWords%>" max="<%=totalWords%>"></progress>
+    <br>
+    <span class="label">You are learning <%=redWords%> out of <%=totalWords%> words.</span> 
+    <progress class="redProgressBar" value="<%=redWords%>" max="<%=totalWords%>"></progress>
+    <br>
+
 </body>
 </html>

@@ -1,6 +1,11 @@
 * {
     text-align: center;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    --darkgreen:  #007E26;
+    --lightgreen: #00B938;
+    --red: rgb(255, 56, 56);
+    --blue: rgb(95, 95, 255);
+    --yellow: #ffc600;
 }
 
 h1 {
@@ -8,7 +13,7 @@ h1 {
 }
 
 input {
-    border: 1px solid #007E26;
+    border: 1px solid var(--darkgreen);
     border-radius: 2px;
     padding: 10px;
     margin: 5px;
@@ -17,23 +22,23 @@ input {
 }
 
 button {
-    border: 1px solid #00B938;
+    border: 1px solid var(--lightgreen);
     border-radius: 3px;
     padding: 5px;
     width: 100px;
     margin-top: 5px;
-    background-color: #00B938;
+    background-color: var(--lightgreen);
     color: white;
     cursor: pointer;
 }
 
 .register {
-    border: 1px solid #007E26;
+    border: 1px solid var(--darkgreen);
     border-radius: 3px;
     padding: 5px;
     width: 100px;
     margin-top: 5px;
-    background-color: #007E26;
+    background-color: var(--darkgreen);
 }
 
 .logoutDiv {
@@ -57,11 +62,9 @@ button {
 .trainButton, .newWordButton {
     padding: 5px;
     text-decoration: none;
-    background-color: rgb(53, 163, 86);
+    background-color: var(--darkgreen);
     color: white;
-    border: 1px solid #007E26;
     border-radius: 2px;
-    font-size: 10px;
     padding: 10px;
     width: 100px;
 }
@@ -143,14 +146,14 @@ tr:nth-child(even){
     background-color: rgba(0, 126, 38, 0.274);
 }
 th{
-    background-color: #007E26;
+    background-color: var(--darkgreen);
     color: white;
-    border: 1px solid #007E26;
+    border: 1px solid var(--darkgreen);
     padding: 8px;
 }
 td{
     padding: 8px;
-    border: 1px solid #007E26;
+    border: 1px solid var(--darkgreen);
     padding: 8px;
 }
 
@@ -161,24 +164,46 @@ td{
     align-content: center;
 }
 
+.label{
+    display: block;
+}
+
 progress {
     border-radius:1em;
-    border: solid 1px black;
     width: 400px;
     height: 10px;
     overflow: hidden;
-    box-shadow: 0 0 20px -7px black;
-  }
-  
-  progress::-moz-progress-bar {
-    background: lightcolor;
-  }
-  
-  progress::-webkit-progress-value {
+}
+
+progress::-moz-progress-bar {
     background: rgb(95, 95, 255);
-    margin-left: -2px;
-  }
-  
-  progress::-webkit-progress-bar {
-    background: white;
-  }
+}
+
+progress::-webkit-progress-value {
+    background: rgb(95, 95, 255);
+}
+
+progress::-webkit-progress-bar {
+    background: rgb(230, 230, 230);
+}
+
+.redProgressBar::-webkit-progress-value{
+    background: var(--red);
+}
+.redProgressBar::-moz-progress-bar{
+    background: var(--red);
+}
+
+.greenProgressBar::-webkit-progress-value{
+    background: var(--lightgreen);
+}
+.greenProgressBar::-moz-progress-bar{
+    background: var(--lightgreen);
+}
+
+.yellowProgressBar::-webkit-progress-value{
+    background: var(--yellow);
+}
+.yellowProgressBar::-moz-progress-bar{
+    background: var(--yellow);
+}

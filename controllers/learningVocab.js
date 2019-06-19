@@ -65,7 +65,25 @@ module.exports = {
         res.redirect('/')
       }
       else{
-        res.render('train', { translatedWord: results[0] });
+        knex('words').where({ user_id: req.session.user.id }).where({status: 'green'}).then(rows=>{
+          let greenWords = rows.length;
+          knex('words').where({ user_id: req.session.user.id }).where({status: 'yellow'}).then(rows=>{
+            let yellowWords = rows.length;
+            knex('words').where({ user_id: req.session.user.id }).where({status: 'red'}).then(rows=>{
+              let redWords = rows.length;
+              knex('words').where({ user_id: req.session.user.id }).then(rows=>{
+                let totalWords = rows.length
+                res.render('train', { 
+                  translatedWord: results[0] , 
+                  greenWords: greenWords, 
+                  redWords: redWords, 
+                  yellowWords: yellowWords,
+                  totalWords: totalWords
+                });
+              })
+            })
+          })
+        })
       }
     })
     .catch(err => {

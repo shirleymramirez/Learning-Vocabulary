@@ -1,6 +1,6 @@
 * {
     text-align: center;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 h1 {
@@ -160,3 +160,25 @@ td{
     
     align-content: center;
 }
+
+progress {
+    border-radius:1em;
+    border: solid 1px black;
+    width: 400px;
+    height: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px -7px black;
+  }
+  
+  progress::-moz-progress-bar {
+    background: lightcolor;
+  }
+  
+  progress::-webkit-progress-value {
+    background: rgb(95, 95, 255);
+    margin-left: -2px;
+  }
+  
+  progress::-webkit-progress-bar {
+    background: white;
+  }

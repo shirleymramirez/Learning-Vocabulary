@@ -12,7 +12,7 @@
     <br>
     <h1 class="h1Train">Ready to Train?</h1>
     <br>
-    <form action="/spanish/train" method="POST">
+    <form action="/train" method="POST">
         <div class="flipCard">
             <div class="card" onclick="flip()">
                 <textarea class="flipCardFront" rows="10" cols="50" readonly><%= translatedWord.translation %></textarea>
@@ -31,11 +31,23 @@
         <button type="submit" onclick="flip()">Enter</button>
     </form>
 
+    <span class="label">You have mastered <%=greenWords%> out of <%=totalWords%> words.</span> 
+    <progress class="greenProgressBar" value="<%=greenWords%>" max="<%=totalWords%>"></progress>
+    <br>
+    <span class="label">You are reviewing <%=yellowWords%> out of <%=totalWords%> words.</span> 
+    <progress class="yellowProgressBar" value="<%=yellowWords%>" max="<%=totalWords%>"></progress>
+    <br>
+    <span class="label">You are learning <%=redWords%> out of <%=totalWords%> words.</span> 
+    <progress class="redProgressBar" value="<%=redWords%>" max="<%=totalWords%>"></progress>
+    <br>
+    
+
     <script>
         function flip() {
             var element = document.querySelector(".card");
             element.classList.toggle("flipped");
         }
     </script>
+
 </body>
 </html>

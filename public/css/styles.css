@@ -176,14 +176,6 @@ progress {
     overflow: hidden;
 }
 
-progress::-moz-progress-bar {
-    background: rgb(95, 95, 255);
-}
-
-progress::-webkit-progress-value {
-    background: rgb(95, 95, 255);
-}
-
 progress::-webkit-progress-bar {
     background: rgb(230, 230, 230);
 }

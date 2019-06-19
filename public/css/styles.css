@@ -1,10 +1,11 @@
 * {
     text-align: center;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    --darkgreen:  #007E26;
+    --darkblue:  rgb(72, 72, 192);
+    --lightblue: rgb(111, 111, 255);
+    --lighterblue: rgba(111, 111, 255, 0.582);
     --lightgreen: #00B938;
     --red: rgb(255, 56, 56);
-    --blue: rgb(95, 95, 255);
     --yellow: #ffc600;
 }
 
@@ -13,7 +14,7 @@ h1 {
 }
 
 input {
-    border: 1px solid var(--darkgreen);
+    border: 1px solid var(--darkblue);
     border-radius: 2px;
     padding: 10px;
     margin: 5px;
@@ -22,23 +23,23 @@ input {
 }
 
 button {
-    border: 1px solid var(--lightgreen);
+    border: 1px solid var(--lightblue);
     border-radius: 3px;
     padding: 5px;
     width: 100px;
     margin-top: 5px;
-    background-color: var(--lightgreen);
+    background-color: var(--lightblue);
     color: white;
     cursor: pointer;
 }
 
 .register {
-    border: 1px solid var(--darkgreen);
+    border: 1px solid var(--darkblue);
     border-radius: 3px;
     padding: 5px;
     width: 100px;
     margin-top: 5px;
-    background-color: var(--darkgreen);
+    background-color: var(--darkblue);
 }
 
 .logoutDiv {
@@ -62,7 +63,7 @@ button {
 .trainButton, .newWordButton {
     padding: 5px;
     text-decoration: none;
-    background-color: var(--darkgreen);
+    background-color: var(--darkblue);
     color: white;
     border-radius: 2px;
     padding: 10px;
@@ -125,14 +126,14 @@ button {
  }
 
 .flipCardFront {
-  border: 1px solid #007E26;
+  border: 1px solid var(--darkblue);
   color: black;
   font-size: 30px;
 }
 
 .flipCardBack {
   transform: rotateY(180deg);
-  border: 1px solid #007E26;
+  border: 1px solid var(--darkblue);
 }
 
 
@@ -143,17 +144,17 @@ table{
 }
 
 tr:nth-child(even){
-    background-color: rgba(0, 126, 38, 0.274);
+    background-color: var(--lighterblue);
 }
 th{
-    background-color: var(--darkgreen);
+    background-color: var(--darkblue);
     color: white;
-    border: 1px solid var(--darkgreen);
+    border: 1px solid var(--darkblue);
     padding: 8px;
 }
 td{
     padding: 8px;
-    border: 1px solid var(--darkgreen);
+    border: 1px solid var(--darkblue);
     padding: 8px;
 }
 

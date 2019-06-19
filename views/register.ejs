@@ -11,13 +11,13 @@
     <h1>Register</h1>
     <br>
     <form action="/register" method="post">
-        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="name" placeholder="Name" required>
         <br>
-        <input type="email" name="email" placeholder="Email">
+        <input type="email" name="email" placeholder="Email" required>
         <br>
-        <input type="password" name="password" placeholder="Password" autocomplete="on">
+        <input type="password" name="password" placeholder="Password" autocomplete="on" required>
         <br>
-        <input type="password" name="confirmpass" placeholder="Confirm Password" autocomplete="on">
+        <input type="password" name="confirmpass" placeholder="Confirm Password" autocomplete="on" required>
         <br>
         <select name="language">
             <option>Choose Your Language</option>

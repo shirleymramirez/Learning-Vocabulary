@@ -61,7 +61,6 @@ module.exports = {
     // get words from the database based on user's input word
     knex('words').orderBy('updated_at', 'asc').where({ user_id: req.session.user.id })
     .then((results)=> {
-      // console.log(results);
       res.render('train', { translatedWord: results[0] });
     })
     .catch(err => {
@@ -113,8 +112,8 @@ module.exports = {
 
   train: function(req,res){
       if (req.body.inputWord === req.body.answer ) {
-        //rerender the page access database again 
-        //knex()
+        //render a new ejs and  access database again(knex)
+        // set count to 0 if wrong or increment count and changed status bar
           res.redirect("train");
       }
   },

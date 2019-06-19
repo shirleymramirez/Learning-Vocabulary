@@ -14,21 +14,23 @@
     <br>
     <form action="/train" method="POST">
         <div class="flipCard">
-            <div class="flipCardInner">
-                <textarea class="flipCardFront" rows="10" cols="50"><%= translatedWord.translation %></textarea>
-                <textarea class="flipCardBack" rows="10" cols="50" hidden="on"><%= translatedWord.word %></textarea>
+            <div class="card" onclick="flip()">
+                <textarea class="flipCardFront" rows="10" cols="50" readonly><%= translatedWord.translation %></textarea>
+                <!-- <%if(translatedWord.word === translatedWord.answer) {%> -->
+                    <textarea class="flipCardBack correctAnswer" rows="10" cols="50" readonly><%= translatedWord.word %></textarea>
+                <!-- <%} else {%>
+                    <textarea class="flipCardBack wrongAnswer" rows="10" cols="50" readonly><%= translatedWord.word %></textarea>
+                <%}%> -->
             </div>
         </div>
         <br>
         <input type="hidden" name="answer" value="<%=translatedWord.word%>">
         <input type="hidden" name="hiddenWord" value="<%=translatedWord.id%>">
-        <input type="text" name="inputWord" placeholder="Answer">
+        <input type="text" name="inputWord" placeholder="Answer" required>
         <br>
-        <button type="submit">Enter</button>
+        <button type="submit" onclick="flip()">Enter</button>
     </form>
 
-    <!-- value = number of correct/total numbers of words * 100% -->
-    <!-- max = total number of words -->
     <span class="label">You have mastered <%=greenWords%> out of <%=totalWords%> words.</span> 
     <progress class="greenProgressBar" value="<%=greenWords%>" max="<%=totalWords%>"></progress>
     <br>
@@ -38,6 +40,14 @@
     <span class="label">You are learning <%=redWords%> out of <%=totalWords%> words.</span> 
     <progress class="redProgressBar" value="<%=redWords%>" max="<%=totalWords%>"></progress>
     <br>
+    
+
+    <script>
+        function flip() {
+            var element = document.querySelector(".card");
+            element.classList.toggle("flipped");
+        }
+    </script>
 
 </body>
 </html>

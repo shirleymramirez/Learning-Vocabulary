@@ -17,22 +17,26 @@ module.exports = {
           language: req.body.language.substr(0,2)
         })
         .then(()=>{
-          knex("users").where({email: req.body.email}).then(rows=>{
+          knex("users")
+          .where({email: req.body.email})
+          .then(rows=>{
             let currUser=rows[0];
             req.session.user = currUser;
             req.session.save(err=>{
               if(err){
                 console.error(err);
               }
+              knex("words")
+              .where({user_id:req.session.user.id})
+              .update({
+                status:"blue",
+                count:0
+              }).then(result=>{
+                res.redirect("/");
+              })
+              .catch(error=>console.log(error))
             })
           });
-          knex("words").where({user_id:req.session.user.id}).update({//maybe this could cause an issue if they lgin when the past user didn't log out
-            status:"blue",
-            count:0
-          }).then(result=>{
-            res.redirect("/");
-          })
-          .catch(error=>console.log(error))
         })
         .catch(err=>console.log(err));
       }
@@ -240,8 +244,8 @@ module.exports = {
         })
       }
   },
-
   logout: function(req,res){
-
+    req.session.destroy()
+    res.redirect('/')
   }
 }

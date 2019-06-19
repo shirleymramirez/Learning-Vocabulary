@@ -59,9 +59,8 @@ module.exports = {
 
   trainingPage: function(req,res){
     // get words from the database based on user's input word
-    knex('words').where({ user_id: req.session.user.id }).whereNot({status: 'green'})
+    knex('words').orderBy('updated_at', 'asc').where({ user_id: req.session.user.id }).whereNot({status: 'green'})
     .then((results)=> {
-      // console.log(results);
       res.render('train', { translatedWord: results[0] });
     })
     .catch(err => {

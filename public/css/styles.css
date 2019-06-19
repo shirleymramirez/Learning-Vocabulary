@@ -91,7 +91,7 @@ button {
     height: 0;
 }
 
-.flashWord {
+.flipCardFront {
     margin-top: 40px;
     border: 1px solid #007E26;
     border-radius: 2px;
@@ -101,6 +101,8 @@ button {
     height: 200px;
     text-align: center;
 }
+
+
 table{
     margin: 20px auto;
     border-collapse: collapse;

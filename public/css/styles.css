@@ -13,7 +13,7 @@ h1 {
     margin-bottom: 0;
 }
 
-input {
+input, select {
     border: 1px solid var(--darkblue);
     border-radius: 2px;
     padding: 10px;
@@ -31,6 +31,15 @@ button {
     background-color: var(--lightblue);
     color: white;
     cursor: pointer;
+}
+
+.loginPage, .registerPage {
+    display: flex;
+    justify-content: center;
+}
+
+.languageSelection {
+    flex-direction: column;
 }
 
 .register {
@@ -101,64 +110,44 @@ form {
 
 .flipCard {
     margin-top: 40px;
-    background-color: transparent;
     height: 300px;
-    perspective: 1000px;
-    border-radius: 2px;
+    perspective: 5000px;
 }
 
 .card {
     margin-left: auto;
     width: 50%;
     height: 100%;
-    text-align: center;
-
     position: absolute;
-    transition: transform 2s;
+    transition: transform 1s;
     transform-style: preserve-3d; 
 }
 
 .card div {
-    display: block;
     height: 100%;
-    width: 100%;
+    width: 50%;
     line-height: 260px;
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    font-size: 140px;
-    position: absolute;
     backface-visibility: hidden;
 }
 
-.front, .back {
-    /* margin-left: 310px; */
-}
-
 .card .flipCardFront {
+    margin-left: 75%;
     position: absolute;
-    font-size: 1em;
+    border: 1px solid var(--darkblue);
+    background-color: beige;
 }
 
 .card .flipCardBack {
     position: relative;
+    margin-left: -25%;
     transform: rotateY( 180deg );
-    font-size: 1em;
+    border: 1px solid var(--darkblue);
+    background-color: azure;
 }
 
 .card.flipped {
     transform: rotateY( 180deg );
 }
-
-.correctAnswer {
-    background-color: yellow;
-    visibility: visible;
-}
-
-.wrongAnswer {
-    background-color: red;
-}
-
 
 table{
     margin: 20px auto;
@@ -234,4 +223,8 @@ progress::-webkit-progress-bar {
 }
 .yellowProgressBar::-moz-progress-bar{
     background: var(--yellow);
+}
+
+.progressDiv {
+    margin-top: 2%;
 }

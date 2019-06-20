@@ -1,13 +1,17 @@
 const knex = require("../db/knex.js");
 const translator = require('../config/GoogleAPI.js');
 const languageMap = {  'tl': 'Tagalog/Filipino',  'de': 'Deutsch',  'fr': 'Français',  'pt': 'Português',  'es': 'Español',  'tr': 'Türk',  'nl': 'Nederlands',  'it': 'Italiano',  'pl': 'Polski',  'ro': 'Român',  'sv': 'Svensk',  'vi': 'Việt',  'bs': 'Bosanski',  'ca': 'Català',  'hr': 'Hrvatski',  'dq': 'Dansk',  'eo': 'Esperanto',  'fi': 'Suomalainen',  'ht': 'Haian kreyòl',  'hu': 'Magyar',  'is': 'Icelandic',  'id': 'Indonesia',  'la': 'Latinum',  'lv': 'Latvijas',  'no': 'Norsk',  'sk': 'Slovenský',  'sw': 'Kiswahili',  'cy': 'Cymraeg'}
+
 module.exports = {
+
   index: function(req, res) {
     res.render('index', {user: req.session.user});
   },
+
   loginPage: function(req, res) {
     res.render('login');
   },
+
   login: function(req,res){
     knex("users").where({email: req.body.email})
     .then((rows)=>{
@@ -48,9 +52,11 @@ module.exports = {
       console.log(err);
     })
   },
+
   register: function(req,res){
     res.render('register');
   },
+
   newUser: function(req,res){
     if(req.body.password!=req.body.confirmpass){
       res.redirect("/register");
@@ -81,9 +87,9 @@ module.exports = {
   trainingPage: function(req,res){
     // get words from the database based on user's input word
     knex('words').orderBy('updated_at', 'asc')
-    .where({language: req.session.user.language})
+    .where({ language: req.session.user.language })
     .where({ user_id: req.session.user.id })
-    .whereNot({status: 'green'})
+    .whereNot({ status: 'green' })
     .then((results)=> {
       if(results.length==0){
         res.redirect('/')
@@ -91,24 +97,24 @@ module.exports = {
       else{
         knex('words')
         .where({ user_id: req.session.user.id })
-        .where({language: req.session.user.language})
-        .where({status: 'green'})
+        .where({ language: req.session.user.language })
+        .where({ status: 'green' })
         .then(rows=>{
           let greenWords = rows.length;
           knex('words')
           .where({ user_id: req.session.user.id })
-          .where({language: req.session.user.language})
-          .where({status: 'yellow'})
+          .where({ language: req.session.user.language })
+          .where({ status: 'yellow' })
           .then(rows=>{
             let yellowWords = rows.length;
             knex('words')
             .where({ user_id: req.session.user.id })
-            .where({language: req.session.user.language})
-            .where({status: 'red'})
+            .where({ language: req.session.user.language })
+            .where({ status: 'red' })
             .then(rows=>{
               let redWords = rows.length;
               knex('words')
-              .where({language: req.session.user.language})
+              .where({ language: req.session.user.language })
               .where({ user_id: req.session.user.id })
               .then(rows=>{
                 let totalWords = rows.length
@@ -136,13 +142,14 @@ module.exports = {
     .where({user_id: req.session.user.id})
     .where({language: req.session.user.language})
     .then(result=>{//result is an array of objects
-      res.render('newWord',{translatedWord: "...", engWord: "type your word here", dictionary: result, language: languageMap[req.session.user.language]})
+      res.render('newWord',{ translatedWord: "...", engWord: "type your word here", dictionary: result, language: languageMap[req.session.user.language] })
     })
   },
+
   newWord: function(req,res){
     knex("words")
-    .where({user_id: req.session.user.id})
-    .where({language: req.session.user.language})//this should load the page with only words from the current session language??? not working
+    .where({ user_id: req.session.user.id })
+    .where({ language: req.session.user.language })//this should load the page with only words from the current session language??? not working
     .then(result=>{//result is an array of objects\
       async function getWord(word =req.body.inputWord,language= req.session.user.language){
         let newWord = await translator(word,language)

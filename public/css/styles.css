@@ -120,7 +120,7 @@ form {
 .card {
     margin-left: auto;
     width: 50%;
-    height: 100%;
+    /* height: 100%; */
     position: absolute;
     transition: transform 1s;
     -webkit-transition: -webkit-transform 1s;
@@ -133,9 +133,10 @@ form {
 }
 
 .card div {
-    height: 100%;
+    /* height: 100%; */
     width: 50%;
-    line-height: 260px;
+    /* line-height: 260px; */
+    line-height: 9;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -144,6 +145,7 @@ form {
 
 .card .flipCardFront {
     margin-left: 75%;
+    height: 20em;
     position: absolute;
     border: 1px solid var(--darkblue);
     background-color: beige;

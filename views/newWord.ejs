@@ -4,10 +4,31 @@
 <head>
     <meta charset="utf-8">
     <title></title>
+    <script src="https://kit.fontawesome.com/698287a9bf.js"></script>
     <link rel="stylesheet" type="text/css" href="../public/css/styles.css">
 </head>
 
 <body>
+    <div class="modale" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h2 style="margin:80px 0">Edit Word/Translation</h2>
+            </div>
+            <form action="/updateWord" method='POST'>
+                <div class="modal-body">
+                    <input type="text" id="newEnglishWord" name="newEnglishWord" placeholder="English Word" size="20" /><br>
+                    <input type="text" id="newTranslatedWord" name="newTranslatedWord" placeholder="<%=language%> word" size="20" />
+                    <input type="hidden" id="hiddenID" name="newWordID">
+                </div>
+                <div class="modal-footer">
+            
+            
+                    <button type="submit">Save Word</a>
+                    <button onclick="close()">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="back">
         <a href="/" class="backLink">Back</a>
     </div>
@@ -32,15 +53,45 @@
             <tr>
                 <th>English</th>
                 <th><%=language%></th>
+                <th>Action</th>
             </tr>
             <%for(let i=0;i<dictionary.length;i++){%>
                 <tr>
-                    <td><%=dictionary[i].word%></td>
-                    <td> <%=dictionary[i].translation%></td>
+                    <td id="<%='english'+dictionary[i].id%>"><%=dictionary[i].word%></td>
+                    <td id="<%='translate'+dictionary[i].id%>"> <%=dictionary[i].translation%></td>
+                    <td>
+                        <i onclick="edit(this)" class="fas fa-edit" id="<%='edit'+dictionary[i].id%>"></i>
+                        <form action="/deleteWord" method="POST">
+                            <input type="hidden" name="deleteID" value="<%=dictionary[i].id%>">
+                            <button class="delete" type="submit">
+                                    <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
+                        
+                    </td>
                 </tr>
             <%}%>
         </table>
     </div>
+    <script>
+        function edit(e){
+            //document.querySelector('#hiddenID').value=e - need to get the ID from the clicked element and add the value to the box yas
+            let modale = document.querySelector('.modale')
+            let myID = e.id.substring(e.id.length-2, e.id.length);
+            let myEnglishWord = document.querySelector('#english'+myID).textContent;
+            let myTranslatedWord = document.querySelector('#translate'+myID).textContent;
+            let formID = document.querySelector('#hiddenID');
+            let formEng = document.querySelector('#newEnglishWord');
+            let formTransl = document.querySelector('#newTranslatedWord')
+            formID.value = myID;
+            formEng.value = myEnglishWord;
+            formTransl.value = myTranslatedWord;
+            modale.className +=' opened';
+        }
+        function close(e){
+            document.querySelector('.modale').removeClass('opened');
+        }
+    </script>
 </body>
 
 </html>

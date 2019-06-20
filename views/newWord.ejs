@@ -16,46 +16,45 @@
             </div>
             <form action="/updateWord" method='POST'>
                 <div class="modal-body">
-                    <input type="text" id="newEnglishWord" name="newEnglishWord" placeholder="English Word" size="20" /><br>
-                    <input type="text" id="newTranslatedWord" name="newTranslatedWord" placeholder="<%=language%> word" size="20" />
+                    <input type="text" id="newEnglishWord" name="newEnglishWord" placeholder="English Word"
+                        size="20" /><br>
+                    <input type="text" id="newTranslatedWord" name="newTranslatedWord" placeholder="<%=language%> word"
+                        size="20" />
                     <input type="hidden" id="hiddenID" name="newWordID">
                 </div>
                 <div class="modal-footer">
-            
-            
+
+
                     <button type="submit">Save Word</a>
-                    <button onclick="close()">Cancel</a>
+                        <button onclick="close()">Cancel</a>
                 </div>
             </form>
         </div>
     </div>
-    <div class="back">
-        <a href="/" class="backLink">Back</a>
-    </div>
-    <br>
-    <h1>Add a New Word</h1>
-    <br>
-    <form action="/newWord" method="post">
-        <input type="text" name="inputWord" placeholder="<%=engWord%>">
-        <br>
-        <button type="submit">Translate</button>
-    </form>
 
-    <form action="/saveWord" method="post">
-        <input type="hidden" name="inputWord" value="<%=engWord%>">
-        <input type="text" name="outputWord" value="<%=translatedWord%>">
+    <% include ./partials/header %>
+    <div class="content">
+        <h1>Add a New Word</h1>
         <br>
-        <button type="submit" class="register">Add to Dictionary</button>
-    </form>
-
-    <div>
-        <table>
-            <tr>
-                <th>English</th>
-                <th><%=language%></th>
-                <th>Action</th>
-            </tr>
-            <%for(let i=0;i<dictionary.length;i++){%>
+        <form action="/newWord" method="post">
+            <input type="text" name="inputWord" placeholder="<%=engWord%>">
+            <br>
+            <button type="submit">Translate</button>
+        </form>
+        <form action="/saveWord" method="post">
+            <input type="hidden" name="inputWord" value="<%=engWord%>">
+            <input type="text" name="outputWord" value="<%=translatedWord%>">
+            <br>
+            <button type="submit" class="register">Add to Dictionary</button>
+        </form>
+        <div>
+            <table>
+                <tr>
+                    <th>English</th>
+                    <th><%=language%></th>
+                    <th>Action</th>
+                </tr>
+                <%for(let i=0;i<dictionary.length;i++){%>
                 <tr>
                     <td id="<%='english'+dictionary[i].id%>"><%=dictionary[i].word%></td>
                     <td id="<%='translate'+dictionary[i].id%>"> <%=dictionary[i].translation%></td>
@@ -64,34 +63,35 @@
                         <form action="/deleteWord" method="POST">
                             <input type="hidden" name="deleteID" value="<%=dictionary[i].id%>">
                             <button class="delete" type="submit">
-                                    <i class="fas fa-trash-alt"></i>
+                                <i class="fas fa-trash-alt"></i>
                             </button>
                         </form>
-                        
+
                     </td>
                 </tr>
-            <%}%>
-        </table>
+                <%}%>
+            </table>
+        </div>
+        <script>
+            function edit(e) {
+                //document.querySelector('#hiddenID').value=e - need to get the ID from the clicked element and add the value to the box yas
+                let modale = document.querySelector('.modale')
+                let myID = e.id.substring(e.id.length - 2, e.id.length);
+                let myEnglishWord = document.querySelector('#english' + myID).textContent;
+                let myTranslatedWord = document.querySelector('#translate' + myID).textContent;
+                let formID = document.querySelector('#hiddenID');
+                let formEng = document.querySelector('#newEnglishWord');
+                let formTransl = document.querySelector('#newTranslatedWord')
+                formID.value = myID;
+                formEng.value = myEnglishWord;
+                formTransl.value = myTranslatedWord;
+                modale.className += ' opened';
+            }
+            function close(e) {
+                document.querySelector('.modale').removeClass('opened');
+            }
+        </script>
     </div>
-    <script>
-        function edit(e){
-            //document.querySelector('#hiddenID').value=e - need to get the ID from the clicked element and add the value to the box yas
-            let modale = document.querySelector('.modale')
-            let myID = e.id.substring(e.id.length-2, e.id.length);
-            let myEnglishWord = document.querySelector('#english'+myID).textContent;
-            let myTranslatedWord = document.querySelector('#translate'+myID).textContent;
-            let formID = document.querySelector('#hiddenID');
-            let formEng = document.querySelector('#newEnglishWord');
-            let formTransl = document.querySelector('#newTranslatedWord')
-            formID.value = myID;
-            formEng.value = myEnglishWord;
-            formTransl.value = myTranslatedWord;
-            modale.className +=' opened';
-        }
-        function close(e){
-            document.querySelector('.modale').removeClass('opened');
-        }
-    </script>
+    <% include ./partials/footer %>
 </body>
-
 </html>

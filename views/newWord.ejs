@@ -61,7 +61,7 @@
                     <td id="<%='translate'+dictionary[i].id%>"> <%=dictionary[i].translation%></td>
                     <td>
                         <i onclick="edit(this)" class="fas fa-edit" id="<%='edit'+dictionary[i].id%>"></i>
-                        <form action="/deleteWord" method="POST">
+                        <form style="display: inline" action="/deleteWord" method="POST">
                             <input type="hidden" name="deleteID" value="<%=dictionary[i].id%>">
                             <button class="delete" type="submit">
                                     <i class="fas fa-trash-alt"></i>
@@ -75,7 +75,6 @@
     </div>
     <script>
         function edit(e){
-            //document.querySelector('#hiddenID').value=e - need to get the ID from the clicked element and add the value to the box yas
             let modale = document.querySelector('.modale')
             let myID = e.id.substring(e.id.length-2, e.id.length);
             let myEnglishWord = document.querySelector('#english'+myID).textContent;

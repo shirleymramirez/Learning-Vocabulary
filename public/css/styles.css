@@ -120,10 +120,7 @@ form {
 }
 
 .card {
-    margin-left: auto;
-    margin-right: auto;
     /* height: 100%; */
-    position: absolute;
     transition: transform 1s;
     -webkit-transition: -webkit-transform 1s;
     -moz-transition: -moz-transform 1s;

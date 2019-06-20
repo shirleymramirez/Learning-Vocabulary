@@ -15,7 +15,7 @@
 /* Navbar style */
 ul.topnav {
   list-style-type: none;
-  padding: 0 2em 2em 2em;
+  padding: 0 2em 0 2em;
   overflow: hidden;
   background-color: var(--lightpurple);
 }
@@ -161,7 +161,6 @@ form {
 }
 
 .card {
-    /* height: 100%; */
     transition: transform 1s;
     -webkit-transition: -webkit-transform 1s;
     -moz-transition: -moz-transform 1s;
@@ -278,7 +277,6 @@ progress::-webkit-progress-bar {
 /* Footer style */
 .footer {
     color: white;
-    padding: 1em 5em 1em 5em;
     background-color: var(--lightpurple);
     height: 2em;
 }

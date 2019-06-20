@@ -1,13 +1,17 @@
 const knex = require("../db/knex.js");
 const translate = require('../config/GoogleAPI.js');
 const languageMap = {  'tl': 'Tagalog/Filipino',  'de': 'Deutsch',  'fr': 'Français',  'pt': 'Português',  'es': 'Español',  'tr': 'Türk',  'nl': 'Nederlands',  'it': 'Italiano',  'pl': 'Polski',  'ro': 'Român',  'sv': 'Svensk',  'vi': 'Việt',  'bs': 'Bosanski',  'ca': 'Català',  'hr': 'Hrvatski',  'dq': 'Dansk',  'eo': 'Esperanto',  'fi': 'Suomalainen',  'ht': 'Haian kreyòl',  'hu': 'Magyar',  'is': 'Icelandic',  'id': 'Indonesia',  'la': 'Latinum',  'lv': 'Latvijas',  'no': 'Norsk',  'sk': 'Slovenský',  'sw': 'Kiswahili',  'cy': 'Cymraeg'}
+
 module.exports = {
+
   index: function(req, res) {
     res.render('index', {user: req.session.user});
   },
+
   loginPage: function(req, res) {
     res.render('login');
   },
+
   login: function(req,res){
     knex("users").where({email: req.body.email})
     .then((rows)=>{
@@ -48,9 +52,11 @@ module.exports = {
       console.log(err);
     })
   },
+
   register: function(req,res){
     res.render('register');
   },
+
   newUser: function(req,res){
     if(req.body.password!=req.body.confirmpass){
       res.redirect("/register");
@@ -124,7 +130,7 @@ module.exports = {
     .where({user_id: req.session.user.id})
     .where({language: req.session.user.language})
     .then(result=>{//result is an array of objects
-      res.render('newWord',{translatedWord: "...", engWord: "type your word here", dictionary: result, language: languageMap[req.session.user.language]})
+      res.render('newWord',{ translatedWord: "...", engWord: "type your word here", dictionary: result, language: languageMap[req.session.user.language] })
     })
   },
   newWord: async function(req,res){

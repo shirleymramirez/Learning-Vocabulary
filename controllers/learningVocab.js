@@ -1,6 +1,6 @@
 const knex = require("../db/knex.js");
 const translate = require('../config/GoogleAPI.js');
-const languageMap = {  'tl': 'Tagalog/Filipino',  'de': 'Deutsch',  'fr': 'Français',  'pt': 'Português',  'es': 'Español',  'tr': 'Türk',  'nl': 'Nederlands',  'it': 'Italiano',  'pl': 'Polski',  'ro': 'Român',  'sv': 'Svensk',  'vi': 'Việt',  'bs': 'Bosanski',  'ca': 'Català',  'hr': 'Hrvatski',  'dq': 'Dansk',  'eo': 'Esperanto',  'fi': 'Suomalainen',  'ht': 'Haian kreyòl',  'hu': 'Magyar',  'is': 'Icelandic',  'id': 'Indonesia',  'la': 'Latinum',  'lv': 'Latvijas',  'no': 'Norsk',  'sk': 'Slovenský',  'sw': 'Kiswahili',  'cy': 'Cymraeg'}
+const languageMap = {  'tl': 'Tagalog/Filipino',  'de': 'Deutsch',  'fr': 'Français',  'pt': 'Português',  'es': 'Español',  'tr': 'Türk', 'nl': 'Nederlands',  'it': 'Italiano',  'pl': 'Polski',  'ro': 'Român',  'sv': 'Svensk',  'vi': 'Việt',  'bs': 'Bosanski',  'ca': 'Català',  'hr': 'Hrvatski',  'dq': 'Dansk',  'eo': 'Esperanto',  'fi': 'Suomalainen',  'ht': 'Haian kreyòl',  'hu': 'Magyar',  'is': 'Icelandic',  'id': 'Indonesia',  'la': 'Latinum',  'lv': 'Latvijas',  'no': 'Norsk',  'sk': 'Slovenský',  'sw': 'Kiswahili',  'cy': 'Cymraeg'}
 
 module.exports = {
 

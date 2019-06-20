@@ -6,54 +6,52 @@
     <title>Training Page</title>
 </head>
 <body>
-    <div class="back">
-        <a href="/" class="backLink">Back</a>
-    </div>
-    <br>
-    <h1 class="h1Train">Ready to Train?</h1>
-    <br>
-    <form action="/train" method="POST">
-        <div class="flipCard">
-            <div class="card" onclick="flip()">         
-                <div class="flipCardFront" rows="10" cols="50" readonly><%= translatedWord.translation %></div>
-                <div class="flipCardBack" rows="10" cols="50" readonly>
-                    <%= translatedWord.word %>
-                    <input type="hidden" name="answer" value="<%=translatedWord.word%>">
-                    <input type="hidden" name="hiddenWord" value="<%=translatedWord.id%>">
-                    <input type="hidden" id="hiddenAnswer" name="inputWord">
-                    <br>
-                    <button type="submit">Next Word</button>
+    <% include ./partials/header %>
+    <div class="content">
+        <h1 class="h1Train">Ready to Train?</h1>
+        <form action="/train" method="POST">
+            <div class="flipCard">
+                <div class="card" onclick="flip()">         
+                    <div class="flipCardFront" rows="10" cols="50" readonly><%= translatedWord.translation %></div>
+                    <div class="flipCardBack" rows="10" cols="50" readonly>
+                        <%= translatedWord.word %>
+                        <input type="hidden" name="answer" value="<%=translatedWord.word%>">
+                        <input type="hidden" name="hiddenWord" value="<%=translatedWord.id%>">
+                        <input type="hidden" id="hiddenAnswer" name="inputWord">
+                        <br>
+                        <button type="submit">Next Word</button>
+                    </div>
                 </div>
             </div>
+        </form>
+            
+        <br>
+        <input type="text" name="inputWord" id="answerBox" placeholder="Answer" required>
+        <br>
+        <button type="submit" onclick="flip()">Enter</button>
+        
+        <div class="progressDiv">
+            <span class="label">You have mastered <%=greenWords%> out of <%=totalWords%> words.</span> 
+            <progress class="greenProgressBar" value="<%=greenWords%>" max="<%=totalWords%>"></progress>
+            <br>
+            <span class="label">You are reviewing <%=yellowWords%> out of <%=totalWords%> words.</span> 
+            <progress class="yellowProgressBar" value="<%=yellowWords%>" max="<%=totalWords%>"></progress>
+            <br>
+            <span class="label">You are learning <%=redWords%> out of <%=totalWords%> words.</span> 
+            <progress class="redProgressBar" value="<%=redWords%>" max="<%=totalWords%>"></progress>
+            <br>
         </div>
-    </form>
-
-    <br>
-    <input type="text" name="inputWord" id="answerBox" placeholder="Answer" required>
-    <br>
-    <button type="submit" onclick="flip()">Enter</button>
-    
-    <div class="progressDiv">
-        <span class="label">You have mastered <%=greenWords%> out of <%=totalWords%> words.</span> 
-        <progress class="greenProgressBar" value="<%=greenWords%>" max="<%=totalWords%>"></progress>
-        <br>
-        <span class="label">You are reviewing <%=yellowWords%> out of <%=totalWords%> words.</span> 
-        <progress class="yellowProgressBar" value="<%=yellowWords%>" max="<%=totalWords%>"></progress>
-        <br>
-        <span class="label">You are learning <%=redWords%> out of <%=totalWords%> words.</span> 
-        <progress class="redProgressBar" value="<%=redWords%>" max="<%=totalWords%>"></progress>
-        <br>
+        
+        <script>
+            function flip() {
+                var card = document.querySelector(".card");
+                card.classList.toggle("flipped");
+                
+                var answer = document.querySelector("#hiddenAnswer");
+                answer.value=document.querySelector("#answerBox").value
+            }
+        </script>
     </div>
-    
-    <script>
-        function flip() {
-            var card = document.querySelector(".card");
-            card.classList.toggle("flipped");
-
-            var answer = document.querySelector("#hiddenAnswer");
-            answer.value=document.querySelector("#answerBox").value
-        }
-    </script>
-
+    <% include ./partials/footer %>
 </body>
 </html>

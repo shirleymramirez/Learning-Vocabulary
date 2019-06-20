@@ -8,39 +8,39 @@
 </head>
 
 <body>
-    <div class="back">
-        <a href="/" class="backLink">Back</a>
-    </div>
-    <br>
-    <h1>Add a New Word</h1>
-    <br>
-    <form action="/newWord" method="post">
-        <input type="text" name="inputWord" placeholder="<%=engWord%>">
+    <% include ./partials/header %>
+    <div class="content">
+        <h1>Add a New Word</h1>
         <br>
-        <button type="submit">Translate</button>
-    </form>
-
-    <form action="/saveWord" method="post">
-        <input type="hidden" name="inputWord" value="<%=engWord%>">
-        <input type="text" name="outputWord" value="<%=translatedWord%>">
-        <br>
-        <button type="submit" class="register">Add to Dictionary</button>
-    </form>
-
-    <div>
-        <table>
-            <tr>
-                <th>English</th>
-                <th><%=language%></th>
-            </tr>
-            <%for(let i=0;i<dictionary.length;i++){%>
+        <form action="/newWord" method="post">
+            <input type="text" name="inputWord" placeholder="<%=engWord%>">
+            <br>
+            <button type="submit">Translate</button>
+        </form>
+        
+        <form action="/saveWord" method="post">
+            <input type="hidden" name="inputWord" value="<%=engWord%>">
+            <input type="text" name="outputWord" value="<%=translatedWord%>">
+            <br>
+            <button type="submit" class="register">Add to Dictionary</button>
+        </form>
+        
+        <div>
+            <table>
                 <tr>
-                    <td><%=dictionary[i].word%></td>
-                    <td> <%=dictionary[i].translation%></td>
+                    <th>English</th>
+                    <th><%=language%></th>
                 </tr>
-            <%}%>
-        </table>
+                <%for(let i=0;i<dictionary.length;i++){%>
+                    <tr>
+                        <td><%=dictionary[i].word%></td>
+                        <td> <%=dictionary[i].translation%></td>
+                    </tr>
+                    <%}%>
+            </table>
+        </div>    
     </div>
+    <% include ./partials/footer %>
 </body>
 
 </html>

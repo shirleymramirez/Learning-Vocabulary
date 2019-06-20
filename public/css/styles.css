@@ -7,6 +7,53 @@
     --lightgreen: #00B938;
     --red: rgb(255, 56, 56);
     --yellow: #ffc600;
+    --lightpurple:rgb(88, 82, 145);
+    margin: 0;
+}
+
+/* Navbar style */
+ul.topnav {
+  list-style-type: none;
+  margin: 0 2em 5em 5em;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--lightpurple);
+}
+
+ul.topnav li {
+    float: left;
+}
+
+ul.topnav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {
+    background-color: #111;
+}
+
+ul.topnav li a.active {
+    background-color: #4CAF50;
+}
+
+ul.topnav li.right {
+    float: right;
+}
+
+@media screen and (max-width: 600px) {
+  ul.topnav li.right, 
+  ul.topnav li {
+      float: none;
+    }
+}
+
+/* Navbar style end */
+.content {
+    min-height: calc(100vh - 11em);
 }
 
 h1 {
@@ -98,12 +145,6 @@ button {
     justify-content: flex-start; 
 }
 
-.h1Train {
-    flex-wrap: nowrap;
-    justify-content: center;
-    height: 0;
-}
-
 form {
     text-align: -webkit-center;
 }
@@ -120,10 +161,6 @@ form {
 }
 
 .card {
-    margin-left: auto;
-    margin-right: auto;
-    /* height: 100%; */
-    position: absolute;
     transition: transform 1s;
     -webkit-transition: -webkit-transform 1s;
     -moz-transition: -moz-transform 1s;
@@ -135,9 +172,7 @@ form {
 }
 
 .card div {
-    /* height: 100%; */
     width: 20em;
-    /* line-height: 260px; */
     line-height: 9;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
@@ -146,11 +181,11 @@ form {
 }
 
 .card .flipCardFront {
-    height: 20em;
+    height: 18em;
     width: 20em;
     position: absolute;
     border: 1px solid var(--darkblue);
-    background-color: beige;
+    border-radius: 25px;
 }
 
 .card .flipCardBack {
@@ -161,6 +196,7 @@ form {
     -o-transform: rotateY( 180deg );
     border: 1px solid var(--darkblue);
     background-color: azure;
+    border-radius: 25px;
 }
 
 .card.flipped {
@@ -237,3 +273,13 @@ progress::-webkit-progress-bar {
 .progressDiv {
     margin-top: 2%;
 }
+
+/* Footer style */
+.footer {
+    color: white;
+    margin: 0 5em;
+    background-color: var(--lightpurple);
+    height: 2em;
+    padding-top: 0.8em;   
+}
+/* Footer style */

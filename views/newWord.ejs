@@ -60,7 +60,7 @@
                     <td id="<%='translate'+dictionary[i].id%>"> <%=dictionary[i].translation%></td>
                     <td>
                         <i onclick="edit(this)" class="fas fa-edit" id="<%='edit'+dictionary[i].id%>"></i>
-                        <form action="/deleteWord" method="POST">
+                        <form style="display: inline" action="/deleteWord" method="POST">
                             <input type="hidden" name="deleteID" value="<%=dictionary[i].id%>">
                             <button class="delete" type="submit">
                                 <i class="fas fa-trash-alt"></i>
@@ -92,6 +92,24 @@
             }
         </script>
     </div>
+    <script>
+        function edit(e){
+            let modale = document.querySelector('.modale')
+            let myID = e.id.substring(e.id.length-2, e.id.length);
+            let myEnglishWord = document.querySelector('#english'+myID).textContent;
+            let myTranslatedWord = document.querySelector('#translate'+myID).textContent;
+            let formID = document.querySelector('#hiddenID');
+            let formEng = document.querySelector('#newEnglishWord');
+            let formTransl = document.querySelector('#newTranslatedWord')
+            formID.value = myID;
+            formEng.value = myEnglishWord;
+            formTransl.value = myTranslatedWord;
+            modale.className +=' opened';
+        }
+        function close(e){
+            document.querySelector('.modale').removeClass('opened');
+        }
+    </script>
     <% include ./partials/footer %>
 </body>
 </html>

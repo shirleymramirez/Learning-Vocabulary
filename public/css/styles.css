@@ -1,14 +1,15 @@
 * {
     text-align: center;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    --darkblue:  rgb(72, 72, 192);
-    --lightblue: rgb(111, 111, 255);
-    --lighterblue: rgba(111, 111, 255, 0.582);
+    --darkblue:  rgb(65, 104, 175);
+    --lightblue: rgb(111, 161, 255);
+    --lighterblue: rgba(111, 161, 255, 0.582);
     --lightgreen: #00B938;
     --red: rgb(255, 56, 56);
     --yellow: #ffc600;
     --lightpurple:rgb(88, 82, 145);
     margin: 0;
+    
 }
 
 /* Navbar style */
@@ -278,8 +279,8 @@ progress::-webkit-progress-bar {
     color: white;
     background-color: var(--lightpurple);
     height: 2em;
-    padding-top: 0.8em;   
 }
+
 /* Footer style */
 .modale:before {
     content: "";

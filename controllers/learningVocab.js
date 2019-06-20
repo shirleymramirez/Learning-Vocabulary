@@ -169,7 +169,23 @@ module.exports = {
       .catch(err=>console.log(err));
     }
   },
-
+  updateWord: function (req,res){
+    let wordId = req.body.newWordID;
+    let newEngWord = req.body.newEnglishWord;
+    let newTranslWord = req.body.newTranslatedWord;
+    knex('words').where({id: wordId}).update({
+      word: newEngWord,
+      translation: newTranslWord
+    })
+    .catch(err=> console.log(err));
+    res.redirect('/newWord')
+  },
+  deleteWord: function(req,res){
+    let idToDelete = req.body.deleteID;
+    knex('words').where({id: idToDelete}).del().then(()=>{
+      res.redirect('/newWord')
+    })
+  },
   train: function(req,res){
       if (req.body.inputWord === req.body.answer ) {
         knex('words').where({id: req.body.hiddenWord}).then(rows=>{

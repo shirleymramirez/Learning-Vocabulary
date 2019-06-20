@@ -13,7 +13,9 @@ module.exports = function(app){
   app.get('/newWord', learningVocab.wordForm)
   app.post('/newWord', learningVocab.newWord)
   app.post('/saveWord', learningVocab.saveWord)
+  app.post('/updateWord', learningVocab.updateWord)
   app.post('/train', learningVocab.train)
+  app.post('/deleteWord', learningVocab.deleteWord)
   app.get('/logout', learningVocab.logout)
 
 }

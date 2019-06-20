@@ -1,5 +1,5 @@
 const knex = require("../db/knex.js");
-const translator = require('../config/GoogleAPI.js');
+const translate = require('../config/GoogleAPI.js');
 const languageMap = {  'tl': 'Tagalog/Filipino',  'de': 'Deutsch',  'fr': 'Français',  'pt': 'Português',  'es': 'Español',  'tr': 'Türk',  'nl': 'Nederlands',  'it': 'Italiano',  'pl': 'Polski',  'ro': 'Român',  'sv': 'Svensk',  'vi': 'Việt',  'bs': 'Bosanski',  'ca': 'Català',  'hr': 'Hrvatski',  'dq': 'Dansk',  'eo': 'Esperanto',  'fi': 'Suomalainen',  'ht': 'Haian kreyòl',  'hu': 'Magyar',  'is': 'Icelandic',  'id': 'Indonesia',  'la': 'Latinum',  'lv': 'Latvijas',  'no': 'Norsk',  'sk': 'Slovenský',  'sw': 'Kiswahili',  'cy': 'Cymraeg'}
 module.exports = {
   index: function(req, res) {
@@ -78,56 +78,44 @@ module.exports = {
     })
   },
 
-  trainingPage: function(req,res){
+  trainingPage: async function(req,res){
     // get words from the database based on user's input word
-    knex('words').orderBy('updated_at', 'asc')
-    .where({language: req.session.user.language})
-    .where({ user_id: req.session.user.id })
-    .whereNot({status: 'green'})
-    .then((results)=> {
-      if(results.length==0){
-        res.redirect('/')
-      }
-      else{
-        knex('words')
-        .where({ user_id: req.session.user.id })
-        .where({language: req.session.user.language})
-        .where({status: 'green'})
-        .then(rows=>{
-          let greenWords = rows.length;
-          knex('words')
-          .where({ user_id: req.session.user.id })
-          .where({language: req.session.user.language})
-          .where({status: 'yellow'})
-          .then(rows=>{
-            let yellowWords = rows.length;
-            knex('words')
-            .where({ user_id: req.session.user.id })
-            .where({language: req.session.user.language})
-            .where({status: 'red'})
-            .then(rows=>{
-              let redWords = rows.length;
-              knex('words')
-              .where({language: req.session.user.language})
-              .where({ user_id: req.session.user.id })
-              .then(rows=>{
-                let totalWords = rows.length
-                res.render('train', { 
-                  translatedWord: results[0] , 
-                  greenWords: greenWords, 
-                  redWords: redWords, 
-                  yellowWords: yellowWords,
-                  totalWords: totalWords
-                });
-              })
-            })
-          })
-        })
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    const testBank = await knex('words')
+                          .orderBy('updated_at', 'asc')
+                          .where({language: req.session.user.language})
+                          .where({ user_id: req.session.user.id })
+                          .whereNot({status: 'green'})
+    if(testBank.length==0){
+        res.redirect('/')//may want to make a new route for this because they don't know why they got kicked out
+    }
+    else{
+      const greenWordsArr = await knex('words')
+                                  .where({ user_id: req.session.user.id })
+                                  .where({language: req.session.user.language})
+                                  .where({status: 'green'})
+      const greenWords = greenWordsArr.length
+      const yellowWordsArr = await knex('words')
+                                  .where({ user_id: req.session.user.id })
+                                  .where({language: req.session.user.language})
+                                  .where({status: 'yellow'})
+      const yellowWords = yellowWordsArr.length
+      const redWordsArr = await knex('words')
+                                  .where({ user_id: req.session.user.id })
+                                  .where({language: req.session.user.language})
+                                  .where({status: 'red'})
+      const redWords = redWordsArr.length;
+      const allWordsArr = await knex('words')
+                                .where({language: req.session.user.language})
+                                .where({ user_id: req.session.user.id })
+      const totalWords = allWordsArr.length
+      res.render('train', { 
+        translatedWord: testBank[0] , 
+        greenWords: greenWords, 
+        redWords: redWords, 
+        yellowWords: yellowWords,
+        totalWords: totalWords
+      });
+    }
   },
 
   wordForm: function(req,res){
@@ -139,18 +127,16 @@ module.exports = {
       res.render('newWord',{translatedWord: "...", engWord: "type your word here", dictionary: result, language: languageMap[req.session.user.language]})
     })
   },
-  newWord: function(req,res){
-    knex("words")
-    .where({user_id: req.session.user.id})
-    .where({language: req.session.user.language})//this should load the page with only words from the current session language??? not working
-    .then(result=>{//result is an array of objects\
-      async function getWord(word =req.body.inputWord,language= req.session.user.language){
-        let newWord = await translator(word,language)
-        res.render('newWord', {translatedWord:newWord, engWord:word, dictionary:result, language: req.session.user.language})
-      }
-      getWord();
-    })
-     
+  newWord: async function(req,res){
+    const result = await knex("words")
+                          .where({user_id: req.session.user.id})
+                          .where({language: req.session.user.language})//this should load the page with only words from the current session language??? not working
+
+    const word =req.body.inputWord
+    const language= req.session.user.language
+    const newWord = await translate(word, language)
+
+    res.render('newWord', {translatedWord:newWord, engWord:word, dictionary:result, language: req.session.user.language})
 
   },
   saveWord: function(req, res){

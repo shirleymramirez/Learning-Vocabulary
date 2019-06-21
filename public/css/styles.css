@@ -78,6 +78,7 @@ button {
     background-color: var(--lightblue);
     color: white;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 
 .loginPage, .registerPage {
@@ -186,6 +187,7 @@ form {
     position: absolute;
     border: 1px solid var(--darkblue);
     border-radius: 25px;
+    font-weight: 3em;
 }
 
 .card .flipCardBack {
@@ -278,10 +280,10 @@ progress::-webkit-progress-bar {
 .footer {
     color: white;
     background-color: var(--lightpurple);
-    height: 2em;
+    height: 2.1em;
+    padding-top: 0.8em;
 }
 
-/* Footer style */
 .modale:before {
     content: "";
     display: none;
@@ -335,16 +337,27 @@ progress::-webkit-progress-bar {
     font-size:14px;
     font-weight:bold
 }
-.modal-header,
+
 .modal-footer {
-    padding: 10px 20px;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px 0;
 }
+
 .modal-header {
     border-bottom: #eeeeee solid 1px;
+    padding: 1em;
+    background-image: url(https://media.istockphoto.com/videos/loopable-abstract-blue-background-video-id466243378?s=640x640);
+    color: white;
 }
 .modal-header h2 {
     font-size: 20px;
 }
+
+.modalbutton {
+    box-shadow: 1px 3px #888;
+}
+
 .fas{
       cursor: pointer;
       font-size: 1em;
@@ -355,4 +368,18 @@ progress::-webkit-progress-bar {
     background: none;
     color: black;
     width: auto;
+    font-size: 1em;
+}
+
+/* Modal Style */
+.fa-edit {
+    color: var(--darkblue);
+}
+
+.fa-trash-alt {
+    color:  var(--red);
+}
+.trainButton, .newWordButton,
+.shadowButton {
+    box-shadow: 1px 3px #888;
 }

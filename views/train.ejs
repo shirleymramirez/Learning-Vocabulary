@@ -8,10 +8,12 @@
 <body>
     <% include ./partials/header %>
     <div class="content">
+        <br>
+        <br>
         <h1 class="h1Train">Ready to Train?</h1>
         <form action="/train" method="POST">
             <div class="flipCard">
-                <div class="card" onclick="flip()">         
+                <div class="card">         
                     <div class="flipCardFront" rows="10" cols="50" readonly><%= translatedWord.translation %></div>
                     <div class="flipCardBack" rows="10" cols="50" readonly>
                         <%= translatedWord.word %>
@@ -19,7 +21,7 @@
                         <input type="hidden" name="hiddenWord" value="<%=translatedWord.id%>">
                         <input type="hidden" id="hiddenAnswer" name="inputWord">
                         <br>
-                        <button type="submit">Next Word</button>
+                        <button type="submit" class="shadowButton">Next Word</button>
                     </div>
                 </div>
             </div>
@@ -28,7 +30,7 @@
         <br>
         <input type="text" name="inputWord" id="answerBox" placeholder="Answer" required>
         <br>
-        <button type="submit" onclick="flip()">Enter</button>
+        <button type="submit" onclick="flip()" class="shadowButton">Enter</button>
         
         <div class="progressDiv">
             <span class="label">You have mastered <%=greenWords%> out of <%=totalWords%> words.</span> 

@@ -23,7 +23,7 @@
                     <input type="hidden" id="hiddenID" name="newWordID">
                 </div>
                 <div class="modal-footer">
-                    <button class="modalbutton" onclick="close()">Cancel</a>
+                    <button class="modalbutton" style="background-color: var(--darkblue)" onclick="close()">Cancel</a>
                     <button class="modalbutton" type="submit">Save Word</a>
                 </div>
             </form>
@@ -31,22 +31,23 @@
     </div>
 
     <% include ./partials/header %>
-    <div class="content">
-        <br>
-        <br>
-        <h1>Add a New Word</h1>
-        <br>
-        <form action="/newWord" method="post">
-            <input type="text" name="inputWord" placeholder="<%=engWord%>" required>
+    <div class="content" style="display:flex;flex-direction: row;justify-content: space-evenly;">
             <br>
-            <button type="submit" class="shadowButton">Translate</button>
-        </form>
-        <form action="/saveWord" method="post">
-            <input type="hidden" name="inputWord" value="<%=engWord%>">
-            <input type="text" name="outputWord" value="<%=translatedWord%>">
+        <div class="newWordContainer">
+            <h1>Add a New Word</h1>
             <br>
-            <button type="submit" class="register shadowButton" required>Add to Dictionary</button>
-        </form>
+            <form action="/newWord" method="post">
+                <input type="text" name="inputWord" placeholder="<%=engWord%>" required>
+                <br>
+                <button type="submit" class="shadowButton">Translate</button>
+            </form>
+            <form action="/saveWord" method="post">
+                <input type="hidden" name="inputWord" value="<%=engWord%>">
+                <input type="text" name="outputWord" value="<%=translatedWord%>">
+                <br>
+                <button type="submit" class="register shadowButton" required>Add to Dictionary</button>
+            </form>
+        </div>
         <div>
             <table>
                 <tr>
@@ -63,7 +64,7 @@
                         <form style="display: inline" action="/deleteWord" method="POST">
                             <input type="hidden" name="deleteID" value="<%=dictionary[i].id%>">
                             <button class="delete" type="submit">
-                                <i class="fas fa-trash-alt"></i>
+                                <i style="color:rgb(92, 0, 0)" class="fas fa-trash-alt"></i>
                             </button>
                         </form>
                     </td>

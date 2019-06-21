@@ -14,11 +14,13 @@
     <div class="content">
         <br>
         <br>
-        <h1>Welcome <%=user.name %></h1>
         <div class="indexContainer">
-            <a class="trainButton" href="/train">Train</a>
-            <br>
-            <a class="newWordButton" href="/newWord">New Words</a>
+            <h1 style="margin-bottom: 5%">Welcome <%=user.name %></h1>
+            <div style="display: flex; flex-direction: row; justify-content: space-evenly">
+                <a class="trainButton" href="/train">Train</a>
+                <br>
+                <a class="newWordButton" href="/newWord">New Words</a>
+            </div>
         </div>
     </div>
     <% include ./partials/footer %>

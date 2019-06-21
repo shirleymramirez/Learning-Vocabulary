@@ -9,7 +9,6 @@
     --yellow: #ffc600;
     --lightpurple:rgb(88, 82, 145);
     margin: 0;
-    
 }
 
 /* Navbar style */
@@ -54,6 +53,7 @@ ul.topnav li.right {
 /* Navbar style end */
 .content {
     min-height: calc(100vh - 6em);
+    background-image: url("../images/white-waves.png");
 }
 
 h1 {
@@ -61,12 +61,12 @@ h1 {
 }
 
 input, select {
-    border: 1px solid var(--darkblue);
-    border-radius: 2px;
+    border: 1px solid white;
     padding: 10px;
     margin: 5px;
     width: 250px;
     text-align: left;
+
 }
 
 button {
@@ -174,7 +174,6 @@ form {
 
 .card div {
     width: 20em;
-    line-height: 9;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -182,21 +181,27 @@ form {
 }
 
 .card .flipCardFront {
-    height: 18em;
-    width: 20em;
+    line-height: 4;
+    height: 4em;
+    width: 4em;
     position: absolute;
-    border: 1px solid var(--darkblue);
     border-radius: 25px;
-    font-weight: 3em;
+    background-color: white;
+    font-size: 5em;
 }
 
 .card .flipCardBack {
+    height: 4em;
+    width: 4em;
+    border-radius: 25px;
+    background-color: white;
+    font-size: 5em;
+
     position: relative;
     transform: rotateY( 180deg );
     -webkit-transform: rotateY( 180deg );
     -moz-transform: rotateY( 180deg );
     -o-transform: rotateY( 180deg );
-    border: 1px solid var(--darkblue);
     background-color: azure;
     border-radius: 25px;
 }

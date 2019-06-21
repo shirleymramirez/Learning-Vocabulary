@@ -84,13 +84,14 @@ module.exports = {
   trainingPage: async function(req,res){
     // get words from the database based on user's input word
     const testBank = await knex('words')
-                          .orderBy('count', 'asc')
+                          .orderBy('updated_at', 'asc')
                           .where({language: req.session.user.language})
                           .where({ user_id: req.session.user.id })
     if(testBank.length==0){
         res.redirect('/')//may want to make a new route for this because they don't know why they got kicked out
     }
     else{
+      let word;
       const greenWordsArr = await knex('words')
                                   .where({ user_id: req.session.user.id })
                                   .where({language: req.session.user.language})
@@ -100,22 +101,49 @@ module.exports = {
                                   .where({ user_id: req.session.user.id })
                                   .where({language: req.session.user.language})
                                   .where('count','<=',99)
-                                  .where('count','>', 50)
+                                  .where('count','>', 0)
+                                  .orderBy('updated_at','asc')
       const yellowWords = yellowWordsArr.length
+      const redWordsAndNewArr = await knex('words')
+                                  .where({ user_id: req.session.user.id })
+                                  .where({language: req.session.user.language})
+                                  .where('count','<=',0)
+                                  .orderBy('updated_at','asc')
+      const redPileSize = redWordsAndNewArr.length;
       const redWordsArr = await knex('words')
                                   .where({ user_id: req.session.user.id })
                                   .where({language: req.session.user.language})
-                                  .where('count','<=', 50)
+                                  .where({count:0})
+                                  .orderBy('updated_at','asc')
       const redWords = redWordsArr.length;
       const allWordsArr = await knex('words')
                                 .where({language: req.session.user.language})
                                 .where({ user_id: req.session.user.id })
+                                .orderBy('updated_at','asc')
       const totalWords = allWordsArr.length
-      if(redWords>0){
-        Math.random()
+      if(redPileSize>0){
+        let coinToss=Math.random()
+        if (coinToss<=.5){
+          word = redWordsAndNewArr[0];//if random number is less than 0.5, we pick the red word we haven't seen in the longest time
+        }
+        else{
+          word = testBank[0]//if random number is greater than .5, we pick any word we haven't seen in the longest time 
+        }
+      }
+      else if(yellowWords>0){
+        let coinToss=Math.random()
+        if (coinToss<=.5){
+          word = yellowWordsArr[0];//if random number is less than 0.5, we pick the red word we haven't seen in the longest time
+        }
+        else{
+          word = testBank[0]//if random number is greater than .5, we pick any word we haven't seen in the longest time 
+        }
+      }
+      else{
+        word = testBank[0]//if we only have green words, then we choose the oldest one.
       }
       res.render('train', { 
-        translatedWord: testBank[0] , 
+        translatedWord: word , 
         greenWords: greenWords, 
         redWords: redWords, 
         yellowWords: yellowWords,
@@ -159,7 +187,7 @@ module.exports = {
           translation: translatedWord,
           user_id: userID,
           language: req.session.user.language,
-          count: 50,
+          count: -1,
           status: 'blue'
         }).then(result=>{
           res.redirect('/newWord');
@@ -192,7 +220,7 @@ module.exports = {
           knex('words')
             .where({id: req.body.hiddenWord})
             .update({
-              count: rows[0].count<=80 ? rows[0].count+20: 100,
+              count: rows[0].count<=70 ? rows[0].count+30: 100,
             })
             .update('updated_at', knex.fn.now())
             .then(result=>{
@@ -214,7 +242,7 @@ module.exports = {
             knex('words')
               .where({id: req.body.hiddenWord})
               .update({
-                count: rows[0].count>=10 ? rows[0].count-10: 0,
+                count: 0,
               })
               .update('updated_at', knex.fn.now())
               .catch(err=>console.log(err));

@@ -347,6 +347,7 @@ progress::-webkit-progress-bar {
 }
 .fas{
       cursor: pointer;
+      font-size: 1em;
 }
 
 .delete{

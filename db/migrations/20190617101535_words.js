@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
         table.string("word");
         table.string("language");
         table.string("translation");
-        table.integer("status");
+        table.string("status");
         table.integer("count");
         table.integer("user_id")
             .notNullable()

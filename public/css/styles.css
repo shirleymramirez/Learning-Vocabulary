@@ -1,13 +1,13 @@
 * {
     text-align: center;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    --darkblue:  rgb(65, 104, 175);
-    --lightblue: rgb(111, 161, 255);
-    --lighterblue: rgba(111, 161, 255, 0.582);
+    --darkblue:  rgb(56, 0, 56);
+    --lightblue:rgb(143, 79, 143);
+    --lighterblue: rgba(143, 79, 143, 0.582);
     --lightgreen: #00B938;
     --red: rgb(255, 56, 56);
     --yellow: #ffc600;
-    --lightpurple:rgb(88, 82, 145);
+    --lightpurple:rgb(56, 0, 56);
     margin: 0;
 }
 
@@ -61,10 +61,10 @@ h1 {
 }
 
 input, select {
-    border: 1px solid white;
+    border: 1px solid grey;
     padding: 10px;
     margin: 5px;
-    width: 250px;
+    width: 270px;
     text-align: left;
 
 }
@@ -111,16 +111,32 @@ button {
 }
 
 .indexContainer {
-    display: flex;
-    flex-direction: row;
     justify-content: center;
-    margin-top: 80px;
+    margin-right: auto;
+    margin-left: auto;
+    align-self: center;
+    padding: 5%;
+    margin-top: 5%;
+    width: 400px;
+    background-color: white;
+    box-shadow: 0 0 30px -10px black;
 }
 
+.newWordContainer {
+    padding: 5%;
+    margin-top: 5%;
+    margin-bottom: auto;
+    margin-right: 10%;
+    margin-left: -10%;
+    width: 400px;
+    background-color: white;
+    box-shadow: 0 0 30px -10px black;
+}
+
+
 .trainButton, .newWordButton {
-    padding: 5px;
     text-decoration: none;
-    background-color: var(--darkblue);
+    background-color: var(--lightblue);
     color: white;
     border-radius: 2px;
     padding: 10px;
@@ -154,7 +170,6 @@ form {
     margin-top: 40px;
     display: flex;
     justify-content: center;
-    height: 300px;
     perspective: 5000px;
     -webkit-perspective: 800px;
     -moz-perspective: 800px;
@@ -173,7 +188,7 @@ form {
 }
 
 .card div {
-    width: 20em;
+    
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -181,29 +196,27 @@ form {
 }
 
 .card .flipCardFront {
-    line-height: 4;
-    height: 4em;
-    width: 4em;
+    width: 400px;
+    height: 200px;
+    padding: 2%;
     position: absolute;
-    border-radius: 25px;
     background-color: white;
-    font-size: 5em;
+    font-size: 2em;
+    box-shadow: 0 0 30px -10px black;
 }
 
 .card .flipCardBack {
-    height: 4em;
-    width: 4em;
-    border-radius: 25px;
+    width: 400px;
+    height: 200px;
+    padding: 2%;
     background-color: white;
-    font-size: 5em;
-
+    font-size: 2em;
     position: relative;
     transform: rotateY( 180deg );
     -webkit-transform: rotateY( 180deg );
     -moz-transform: rotateY( 180deg );
     -o-transform: rotateY( 180deg );
-    background-color: azure;
-    border-radius: 25px;
+    box-shadow: 0 0 20px -10px black;
 }
 
 .card.flipped {
@@ -217,6 +230,7 @@ table{
     margin: 20px auto;
     border-collapse: collapse;
     width: 300px;
+    background-color: white;
 }
 
 tr:nth-child(even){
@@ -229,9 +243,8 @@ th{
     padding: 8px;
 }
 td{
-    padding: 8px;
+    padding: 3px;
     border: 1px solid var(--darkblue);
-    padding: 8px;
 }
 
 .table-container{
@@ -352,7 +365,7 @@ progress::-webkit-progress-bar {
 .modal-header {
     border-bottom: #eeeeee solid 1px;
     padding: 1em;
-    background-image: url(https://media.istockphoto.com/videos/loopable-abstract-blue-background-video-id466243378?s=640x640);
+    background-color: var(--darkblue);
     color: white;
 }
 .modal-header h2 {

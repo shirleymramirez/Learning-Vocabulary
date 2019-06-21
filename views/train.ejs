@@ -11,26 +11,33 @@
         <br>
         <br>
         <h1 class="h1Train">Ready to Train?</h1>
-        <form action="/train" method="POST">
-            <div class="flipCard">
-                <div class="card">         
-                    <div class="flipCardFront" rows="10" cols="50" readonly><%= translatedWord.translation %></div>
-                    <div class="flipCardBack" rows="10" cols="50" readonly>
+        <div class="flipCard">
+            <div class="card"> 
+                <div class="flipCardFront" readonly>
+                    <%= translatedWord.translation %>
+                    <br>
+                    <input type="text" name="inputWord" id="answerBox" placeholder="Answer" required>
+                    <br>
+                    <button type="submit" onclick="flip()" class="shadowButton">Enter</button>
+                </div>
+                <div class="flipCardBack" readonly>  
+                    <form action="/train" method="POST">
                         <%= translatedWord.word %>
                         <input type="hidden" name="answer" value="<%=translatedWord.word%>">
                         <input type="hidden" name="hiddenWord" value="<%=translatedWord.id%>">
                         <input type="hidden" id="hiddenAnswer" name="inputWord">
                         <br>
                         <button type="submit" class="shadowButton">Next Word</button>
-                    </div>
+                        
+                    </form>
+                
+                    
                 </div>
             </div>
-        </form>
+        </div>
             
         <br>
-        <input type="text" name="inputWord" id="answerBox" placeholder="Answer" required>
-        <br>
-        <button type="submit" onclick="flip()" class="shadowButton">Enter</button>
+        
         
         <div class="progressDiv">
             <span class="label">You have mastered <%=greenWords%> out of <%=totalWords%> words.</span> 

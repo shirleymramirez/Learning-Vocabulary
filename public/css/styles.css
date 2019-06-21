@@ -69,6 +69,10 @@ input, select {
 
 }
 
+#answerBox{
+    align-self: center;
+}
+
 button {
     border: 1px solid var(--lightblue);
     border-radius: 3px;
@@ -79,6 +83,7 @@ button {
     color: white;
     cursor: pointer;
     margin-bottom: 5px;
+    align-self: center;
 }
 
 .loginPage, .registerPage {
@@ -123,7 +128,7 @@ button {
 }
 
 .newWordContainer {
-    padding: 5%;
+    padding: 2%;
     margin-top: 5%;
     margin-bottom: auto;
     margin-right: 10%;
@@ -196,6 +201,10 @@ form {
 }
 
 .card .flipCardFront {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
     width: 400px;
     height: 200px;
     padding: 2%;
@@ -206,6 +215,9 @@ form {
 }
 
 .card .flipCardBack {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     width: 400px;
     height: 200px;
     padding: 2%;
